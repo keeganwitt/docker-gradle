@@ -1,7 +1,7 @@
 FROM openjdk:8-jre-alpine
 
 ENV GRADLE_VERSION 3.2.1
-ENV GRADLE_DOWNLOAD_SHA256 9843a3654d3e57dce54db06d05f18b664b95c22bf90c6becccb61fc63ce60689
+ARG GRADLE_DOWNLOAD_SHA256=9843a3654d3e57dce54db06d05f18b664b95c22bf90c6becccb61fc63ce60689
 
 ENV GRADLE_HOME /opt/gradle
 ENV PATH ${GRADLE_HOME}/bin:$PATH
@@ -21,5 +21,8 @@ RUN set -ex \
 	&& mv "gradle-${GRADLE_VERSION}" /opt/gradle \
 	\
 	&& gradle --version
+
+ARG USER_HOME_DIR="/root"
+VOLUME "$USER_HOME_DIR/.gradle"
 
 CMD ["gradle"]
