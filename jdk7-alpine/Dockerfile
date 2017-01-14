@@ -11,19 +11,22 @@ RUN set -ex \
 		libstdc++=5.3.0-r0 \
 		unzip
 
+ARG USER_HOME_DIR="/root"
+VOLUME "$USER_HOME_DIR/.gradle"
+
 WORKDIR /opt
 RUN set -ex \
+	&& echo "Downloading Gradle" \
 	&& wget "http://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	&& echo "$GRADLE_DOWNLOAD_SHA256 *gradle-${GRADLE_VERSION}-bin.zip" | sha256sum -c - \
 	\
+	&& echo "Installing Gradle" \
 	&& unzip gradle-${GRADLE_VERSION}-bin.zip \
 	&& apk del unzip \
 	&& rm gradle-${GRADLE_VERSION}-bin.zip \
 	&& mv "gradle-${GRADLE_VERSION}" /opt/gradle \
 	\
+	&& echo "Testing Gradle installation" \
 	&& gradle --version
-
-ARG USER_HOME_DIR="/root"
-VOLUME "$USER_HOME_DIR/.gradle"
 
 CMD ["gradle"]
