@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-gradleMajorVersion=3.2
-gradleVersion=${gradleMajorVersion}.1
+gradleMajorVersion=3.3
+gradleVersion=${gradleMajorVersion}
 
 cd jre7
 docker build -t gradle:jre7-${gradleMajorVersion} -t gradle:jre7-${gradleVersion} -t gradle:jre7-latest .
