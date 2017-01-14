@@ -7,8 +7,9 @@ ENV GRADLE_HOME /opt/gradle
 ENV PATH ${GRADLE_HOME}/bin:$PATH
 
 RUN set -ex \
-	&& apk add --update libstdc++ unzip  \
-	&& rm -rf /var/cache/apk/*
+	&& apk add --no-cache \
+		libstdc++=5.3.0-r0 \
+		unzip
 
 WORKDIR /opt
 RUN set -ex \
