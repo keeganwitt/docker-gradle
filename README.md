@@ -7,7 +7,7 @@ For now, you'll have to build the images first until they're published on Docker
 ### Building a Gradle project
 Run this from the directory of the Gradle project you want to build.
 
-`docker run -it --rm -v "$PWD":/project -w /project --name gradle gradle:jdk8-latest-alpine gradle <gradle-task>`
+`docker run -it --rm -v "$PWD":/project -w /project --name gradle gradle:alpine gradle <gradle-task>`
 
 ## Instructions for a new Gradle release
 1. Change `ENV GRADLE_VERSION` in all Dockerfiles to new version number.
