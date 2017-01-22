@@ -1,7 +1,7 @@
 FROM openjdk:8u111-jdk
 
 ENV GRADLE_VERSION 3.3
-ARG GRADLE_DOWNLOAD_SHA256=668a65ea17037371a1952cca5f42ebc03329e15d3619aacb4c7dd5f4b39a8dfd
+ARG GRADLE_DOWNLOAD_SHA256=c58650c278d8cf0696cab65108ae3c8d95eea9c1938e0eb8b997095d5ca9a292
 
 ENV GRADLE_HOME /opt/gradle
 ENV PATH ${GRADLE_HOME}/bin:$PATH
@@ -18,9 +18,6 @@ RUN set -ex \
 	&& echo "Installing Gradle" \
 	&& unzip gradle-${GRADLE_VERSION}-bin.zip \
 	&& rm gradle-${GRADLE_VERSION}-bin.zip \
-	&& mv "gradle-${GRADLE_VERSION}" /opt/gradle \
-	\
-	&& echo "Testing Gradle installation" \
-	&& gradle --version
+	&& mv "gradle-${GRADLE_VERSION}" /opt/gradle
 
 CMD ["gradle"]

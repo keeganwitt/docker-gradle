@@ -1,0 +1,22 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=jdk7
+  - VERSION=jdk7 VARIANT=alpine
+  - VERSION=jre7
+  - VERSION=jre7 VARIANT=alpine
+  - VERSION=jdk8
+  - VERSION=jdk8 VARIANT=alpine
+  - VERSION=jre8
+  - VERSION=jre8 VARIANT=alpine
+
+before_script:
+  - env | sort
+  - cd "${VERSION}${VARIANT:+-$VARIANT}"
+  - image="gradle:${VERSION}${VARIANT:+-$VARIANT}"
+
+script:
+  - docker build -t "${image}" .
+  - cd ../test
+  - ./run.sh "${image}" "3.3"

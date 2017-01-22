@@ -24,9 +24,6 @@ RUN set -ex \
 	&& unzip gradle-${GRADLE_VERSION}-bin.zip \
 	&& apk del unzip \
 	&& rm gradle-${GRADLE_VERSION}-bin.zip \
-	&& mv "gradle-${GRADLE_VERSION}" /opt/gradle \
-	\
-	&& echo "Testing Gradle installation" \
-	&& gradle --version
+	&& mv "gradle-${GRADLE_VERSION}" /opt/gradle
 
 CMD ["gradle"]
