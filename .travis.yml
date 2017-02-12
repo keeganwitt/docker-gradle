@@ -10,13 +10,17 @@ env:
   - VERSION=jdk8 VARIANT=alpine
   - VERSION=jre8
   - VERSION=jre8 VARIANT=alpine
+  - VERSION=jdk9
+  - VERSION=jre9
 
-before_script:
+before_install:
   - env | sort
   - cd "${VERSION}${VARIANT:+-$VARIANT}"
   - image="gradle:${VERSION}${VARIANT:+-$VARIANT}"
 
-script:
+install:
   - docker build -t "${image}" .
+
+script:
   - cd ../test
   - ./run.sh "${image}" "3.3"

@@ -1,29 +1,40 @@
-FROM openjdk:7u121-jre-alpine
+FROM openjdk:7-jre-alpine
+
+CMD ["gradle"]
+
+WORKDIR /opt
+ENV GRADLE_HOME /opt/gradle
+ENV PATH "${GRADLE_HOME}/bin:${PATH}"
+
+ARG USER_HOME_DIR="/root"
+VOLUME "${USER_HOME_DIR}/.gradle"
 
 ENV GRADLE_VERSION 3.3
 ARG GRADLE_DOWNLOAD_SHA256=c58650c278d8cf0696cab65108ae3c8d95eea9c1938e0eb8b997095d5ca9a292
-
-ENV GRADLE_HOME /opt/gradle
-ENV PATH ${GRADLE_HOME}/bin:$PATH
-
-RUN set -ex \
+RUN set -eu \
+	&& echo "Installing dependencies" \
 	&& apk add --no-cache \
-		libstdc++=5.3.0-r0 \
-		unzip
-
-ARG USER_HOME_DIR="/root"
-VOLUME "$USER_HOME_DIR/.gradle"
-
-WORKDIR /opt
-RUN set -ex \
+		bash \
+		libstdc++ \
+	\
+	&& echo "Installing build dependencies" \
+	&& apk add --no-cache --virtual .build-deps \
+		ca-certificates \
+		gnupg \
+		openssl \
+		unzip \
+	\
 	&& echo "Downloading Gradle" \
-	&& wget "http://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
-	&& echo "$GRADLE_DOWNLOAD_SHA256 *gradle-${GRADLE_VERSION}-bin.zip" | sha256sum -c - \
+	&& wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	\
+	&& echo "Checking download hash" \
+	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
 	\
 	&& echo "Installing Gradle" \
-	&& unzip gradle-${GRADLE_VERSION}-bin.zip \
-	&& apk del unzip \
-	&& rm gradle-${GRADLE_VERSION}-bin.zip \
-	&& mv "gradle-${GRADLE_VERSION}" /opt/gradle
-
-CMD ["gradle"]
+	&& unzip gradle.zip \
+	&& rm gradle.zip \
+	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}" \
+	\
+	&& apk del .build-deps \
+	\
+	&& gradle --version

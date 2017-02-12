@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:9-jdk
 
 CMD ["gradle"]
 
@@ -12,20 +12,14 @@ VOLUME "${USER_HOME_DIR}/.gradle"
 ENV GRADLE_VERSION 3.3
 ARG GRADLE_DOWNLOAD_SHA256=c58650c278d8cf0696cab65108ae3c8d95eea9c1938e0eb8b997095d5ca9a292
 RUN set -eu \
-	&& echo "Installing dependencies" \
-	&& apk add --no-cache \
-		bash \
-		libstdc++ \
-	\
 	&& echo "Installing build dependencies" \
-	&& apk add --no-cache --virtual .build-deps \
-		ca-certificates \
+	&& apt-get update \
+	&& apt-get update && apt-get install -y --no-install-recommends \
 		gnupg \
-		openssl \
-		unzip \
+	&& rm -rf /var/lib/apt/lists/* \
 	\
 	&& echo "Downloading Gradle" \
-	&& wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	&& wget -nv -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	\
 	&& echo "Checking download hash" \
 	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
@@ -35,6 +29,10 @@ RUN set -eu \
 	&& rm gradle.zip \
 	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}" \
 	\
-	&& apk del .build-deps \
+	&& echo "Cleaning up build dependencies" \
+	&& echo $(apt-mark showauto) \
+	&& apt-get remove -y --purge \
+		gnupg \
+	&& apt-get autoremove -y --purge \
 	\
 	&& gradle --version
