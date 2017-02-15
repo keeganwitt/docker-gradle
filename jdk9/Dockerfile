@@ -15,8 +15,8 @@ RUN set -eu \
 	&& echo "Installing build dependencies" \
 	&& apt-get update \
 	&& apt-get update && apt-get install -y --no-install-recommends \
-		gnupg \
-	&& rm -rf /var/lib/apt/lists/* \
+		gnupg dirmngr \
+	&& rm -r /var/lib/apt/lists/* \
 	\
 	&& echo "Downloading Gradle" \
 	&& wget -nv -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
@@ -32,7 +32,7 @@ RUN set -eu \
 	&& echo "Cleaning up build dependencies" \
 	&& echo $(apt-mark showauto) \
 	&& apt-get remove -y --purge \
-		gnupg \
+		gnupg dirmngr \
 	&& apt-get autoremove -y --purge \
 	\
 	&& gradle --version
