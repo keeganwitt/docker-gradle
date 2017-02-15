@@ -16,7 +16,7 @@ RUN set -eu \
 	&& apt-get update \
 	&& apt-get update && apt-get install -y --no-install-recommends \
 		gnupg \
-	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -r /var/lib/apt/lists/* \
 	\
 	&& echo "Downloading Gradle" \
 	&& wget -nv -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
