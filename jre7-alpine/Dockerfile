@@ -20,7 +20,6 @@ RUN set -eu \
 	&& echo "Installing build dependencies" \
 	&& apk add --no-cache --virtual .build-deps \
 		ca-certificates \
-		gnupg \
 		openssl \
 		unzip \
 	\
