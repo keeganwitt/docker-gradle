@@ -19,7 +19,7 @@ before_install:
   - image="gradle:${VERSION}${VARIANT:+-$VARIANT}"
 
 install:
-  - docker build -t "${image}" .
+  - docker build --tag "${image}" .
 
 script:
   - cd ../test
