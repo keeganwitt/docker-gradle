@@ -6,11 +6,10 @@ WORKDIR /opt
 ENV GRADLE_HOME /opt/gradle
 ENV PATH "${GRADLE_HOME}/bin:${PATH}"
 
-ARG USER_HOME_DIR="/root"
-VOLUME "${USER_HOME_DIR}/.gradle"
+VOLUME "/root/.gradle"
 
-ENV GRADLE_VERSION 3.3
-ARG GRADLE_DOWNLOAD_SHA256=c58650c278d8cf0696cab65108ae3c8d95eea9c1938e0eb8b997095d5ca9a292
+ENV GRADLE_VERSION 3.4
+ARG GRADLE_DOWNLOAD_SHA256=72d0cd4dcdd5e3be165eb7cd7bbd25cf8968baf400323d9ab1bba622c3f72205
 RUN set -eu \
 	&& echo "Downloading Gradle" \
 	&& wget -nv -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
