@@ -10,7 +10,7 @@ VOLUME "/root/.gradle"
 
 ENV GRADLE_VERSION 3.4
 ARG GRADLE_DOWNLOAD_SHA256=72d0cd4dcdd5e3be165eb7cd7bbd25cf8968baf400323d9ab1bba622c3f72205
-RUN set -eu \
+RUN set -o errexit -o nounset \
 	&& echo "Installing dependencies" \
 	&& apk add --no-cache \
 		bash \
