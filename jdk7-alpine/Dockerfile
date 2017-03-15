@@ -28,7 +28,7 @@ RUN set -o errexit -o nounset \
 	&& unzip gradle.zip \
 	&& rm gradle.zip \
 	&& mkdir /opt \
-	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}" \
+	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
 	\
 	&& apk del .build-deps \
@@ -39,9 +39,11 @@ RUN set -o errexit -o nounset \
 	&& mkdir /home/gradle/.gradle \
 	&& chown -R gradle:gradle /home/gradle
 
+# Create Gradle volume
 USER gradle
 VOLUME "/home/gradle/.gradle"
 WORKDIR /home/gradle
 
-RUN gradle --version
-
+RUN set -o errexit -o nounset \
+	&& echo "Testing Gradle installation" \
+	&& gradle --version
