@@ -16,7 +16,7 @@ RUN set -o errexit -o nounset \
 	&& echo "Installing Gradle" \
 	&& unzip gradle.zip \
 	&& rm gradle.zip \
-	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}" \
+	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
 	\
 	&& echo "Adding gradle user and group" \
@@ -25,8 +25,11 @@ RUN set -o errexit -o nounset \
 	&& mkdir /home/gradle/.gradle \
 	&& chown --recursive gradle:gradle /home/gradle
 
+# Create Gradle volume
 USER gradle
 VOLUME "/home/gradle/.gradle"
 WORKDIR /home/gradle
 
-RUN gradle --version
+RUN set -o errexit -o nounset \
+	&& echo "Testing Gradle installation" \
+	&& gradle --version
