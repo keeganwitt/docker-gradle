@@ -25,11 +25,11 @@ Run this from the directory of the Gradle project you want to build.
 
 ### Reusing the Gradle cache
 
-The local Gradle cache can be reused across containers by creating a volume and mounting it in _/root/.gradle_.
+The local Gradle cache can be reused across containers by creating a volume and mounting it in */home/gradle/.gradle*.
 
 ```
 docker volume create --name gradle-cache
-docker run --rm -v gradle-cache:/root/.gradle gradle:latest gradle build
+docker run -it -v gradle-cache:/home/gradle/.gradle gradle:alpine gradle build
 ```
 
 ## Instructions for a new Gradle release
