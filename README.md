@@ -49,7 +49,7 @@ docker run -it -v gradle-cache:/home/gradle/.gradle gradle:alpine gradle build
 * Docker
 * sha256sum
 
-**Note: Java 9 images are experimental**
+**Note: Java 9 support is experimental**
 
 ---
 ![Travis Build Status](https://travis-ci.org/keeganwitt/docker-gradle.svg?branch=master)
