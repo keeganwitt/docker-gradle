@@ -9,7 +9,6 @@ ARG GRADLE_DOWNLOAD_SHA256=d55dfa9cfb5a3da86a1c9e75bb0b9507f9a8c8c100793ccec7beb
 RUN set -o errexit -o nounset \
 	&& echo "Installing dependencies" \
 	&& apk add --no-cache \
-		bash \
 		libstdc++ \
 	\
 	&& echo "Installing build dependencies" \
