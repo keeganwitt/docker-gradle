@@ -3,9 +3,9 @@ FROM openjdk:7-jre-alpine
 CMD ["gradle"]
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.0.1
+ENV GRADLE_VERSION 4.1
 
-ARG GRADLE_DOWNLOAD_SHA256=d717e46200d1359893f891dab047fdab98784143ac76861b53c50dbd03b44fd4
+ARG GRADLE_DOWNLOAD_SHA256=d55dfa9cfb5a3da86a1c9e75bb0b9507f9a8c8c100793ccec7beb6e259f9ed43
 RUN set -o errexit -o nounset \
 	&& echo "Installing dependencies" \
 	&& apk add --no-cache \
