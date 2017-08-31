@@ -17,22 +17,24 @@
 
 ## How to use this image
 
+Note that if you are mounting a volume and the uid running Docker is not _1000_, you should run as user _root_ (`-u root`).
+
 ### Building a Gradle project
 
 Run this from the directory of the Gradle project you want to build.
 
-`docker run --rm -v "$PWD":/project -w /project --name gradle gradle:latest gradle <gradle-task>`
+`docker run --rm -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>`
 
 <!--
 ### Reusing the Gradle cache
 
-The local Gradle cache can be reused across containers by creating a volume and mounting it in */home/gradle/.gradle*.
+The local Gradle cache can be reused across containers by creating a volume and mounting it to _/home/gradle/.gradle_.
 Note that sharing between concurrently running containers doesn't work currently
 (see [#851](https://github.com/gradle/gradle/issues/851)).
 
 ```
 docker volume create --name gradle-cache
-docker run -it -v gradle-cache:/home/gradle/.gradle gradle:alpine gradle build
+docker run --rm -v gradle-cache:/home/gradle/.gradle -w /home/gradle/project gradle:latest gradle <gradle-task>
 ```
 -->
 

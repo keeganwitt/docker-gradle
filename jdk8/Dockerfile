@@ -23,7 +23,10 @@ RUN set -o errexit -o nounset \
 	&& groupadd --system --gid 1000 gradle \
 	&& useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
 	&& mkdir /home/gradle/.gradle \
-	&& chown --recursive gradle:gradle /home/gradle
+	&& chown --recursive gradle:gradle /home/gradle \
+	\
+	&& echo "Symlinking root Gradle cache to gradle Gradle cache" \
+	&& ln -s /home/gradle/.gradle /root/.gradle
 
 # Create Gradle volume
 USER gradle
