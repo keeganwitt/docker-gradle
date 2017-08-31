@@ -17,13 +17,11 @@
 
 ## How to use this image
 
-Note that if you are mounting a volume and the uid running Docker is not _1000_, you should run as user _root_ (`-u root`) and set the working directory to root's home or a subdirectory of it (`-w /root`).
-
 ### Building a Gradle project
 
 Run this from the directory of the Gradle project you want to build.
 
-`docker run --rm -v "$PWD":/home/gradle/project -w /home/gradle/project --name gradle gradle:latest gradle <gradle-task>`
+`docker run --rm -v "$PWD":/project -w /project --name gradle gradle:latest gradle <gradle-task>`
 
 <!--
 ### Reusing the Gradle cache
