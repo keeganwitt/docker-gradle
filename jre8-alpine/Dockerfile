@@ -40,7 +40,7 @@ RUN set -o errexit -o nounset \
 	&& chown -R gradle:gradle /home/gradle \
 	\
 	&& echo "Symlinking root Gradle cache to gradle Gradle cache" \
- 	&& ln -s /home/gradle/.gradle /root/.gradle
+	&& ln -s /home/gradle/.gradle /root/.gradle
 
 # Create Gradle volume
 USER gradle
