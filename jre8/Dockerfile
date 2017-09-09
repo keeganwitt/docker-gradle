@@ -19,19 +19,16 @@ RUN set -o errexit -o nounset \
 	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
 	\
-	&& echo "Creating Gradle cache for root" \
-	&& mkdir /root/.gradle \
-	\
 	&& echo "Adding gradle user and group" \
 	&& groupadd --system --gid 1000 gradle \
 	&& useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
 	&& mkdir /home/gradle/.gradle \
-	&& chown --recursive gradle:gradle /home/gradle
+	&& chown --recursive gradle:gradle /home/gradle \
+	\
+	&& echo "Symlinking root Gradle cache to gradle Gradle cache" \
+ 	&& ln -s /home/gradle/.gradle /root/.gradle
 
-# Create root .gradle volume
-VOLUME "/root/.gradle"
-
-# Create gradle .gradle volume
+# Create Gradle volume
 USER gradle
 VOLUME "/home/gradle/.gradle"
 WORKDIR /home/gradle
