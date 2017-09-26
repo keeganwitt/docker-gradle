@@ -7,11 +7,6 @@ ENV GRADLE_VERSION 4.2
 
 ARG GRADLE_DOWNLOAD_SHA256=515dd63d32e55a9c05667809c5e40a947529de3054444ad274b3b75af5582eae
 RUN set -o errexit -o nounset \
-	&& echo "Installing dependencies" \
-	&& apk add --no-cache \
-		bash \
-		libstdc++ \
-	\
 	&& echo "Installing build dependencies" \
 	&& apk add --no-cache --virtual .build-deps \
 		ca-certificates \
