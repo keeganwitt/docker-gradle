@@ -19,6 +19,7 @@ if [[ "${version}" != "${expectedGradleVersion}" ]]; then
 fi
 
 if [[ $(echo "${image}" | grep "jre") == "" ]]; then
+    echo "Building Java project"
     if [[ $(docker run --user "${user}" --rm --volume "${PWD}/java-quickstart:${home}/project" --workdir "${home}/project" "${image}" gradle clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
         echo "java-quickstart test failed"
         exit 1
