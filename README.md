@@ -10,6 +10,8 @@
 * [alpine, jdk8-alpine, jdk-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-alpine/Dockerfile)
 * [jre8, jre](https://github.com/keeganwitt/docker-gradle/blob/master/jre8/Dockerfile)
 * [jre8-alpine, jre-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jre8-alpine/Dockerfile)
+* [jdk9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk9/Dockerfile)
+* [jre9](https://github.com/keeganwitt/docker-gradle/blob/master/jre9/Dockerfile)
 
 ## What is Gradle?
 
