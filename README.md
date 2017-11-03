@@ -27,7 +27,6 @@ Run this from the directory of the Gradle project you want to build.
 
 `docker run --rm -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>`
 
-<!--
 ### Reusing the Gradle cache
 
 The local Gradle cache can be reused across containers by creating a volume and mounting it to _/home/gradle/.gradle_.
@@ -36,9 +35,8 @@ Note that sharing between concurrently running containers doesn't work currently
 
 ```
 docker volume create --name gradle-cache
-docker run --rm -v gradle-cache:/home/gradle/.gradle -w /home/gradle/project gradle:latest gradle <gradle-task>
+docker run --rm -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>
 ```
--->
 
 ## Instructions for a new Gradle release
 
