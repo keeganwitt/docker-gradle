@@ -5,7 +5,7 @@ CMD ["gradle"]
 ENV GRADLE_HOME /opt/gradle
 ENV GRADLE_VERSION 4.3.1
 
-# cacerts from JDK 8u152 to workaround http://bugs.java.com/view_bug.do?bug_id=8189357"
+# cacerts from JDK 8u152 to workaround http://bugs.java.com/view_bug.do?bug_id=8189357
 COPY cacerts /etc/ssl/certs/java/cacerts
 
 ARG GRADLE_DOWNLOAD_SHA256=15ebe098ce0392a2d06d252bff24143cc88c4e963346582c8d88814758d93ac7
