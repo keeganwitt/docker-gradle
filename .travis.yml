@@ -12,6 +12,8 @@ env:
   - VERSION=jre8 VARIANT=alpine
   - VERSION=jdk9
   - VERSION=jre9
+  - VERSION=jdk10
+  - VERSION=jre10
 
 before_install:
   - env | sort
