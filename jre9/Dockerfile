@@ -3,12 +3,12 @@ FROM openjdk:9-jre
 CMD ["gradle"]
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.4.1
+ENV GRADLE_VERSION 4.5
 
 # cacerts from JDK 8u152 to workaround http://bugs.java.com/view_bug.do?bug_id=8189357
 COPY cacerts /etc/ssl/certs/java/cacerts
 
-ARG GRADLE_DOWNLOAD_SHA256=e7cf7d1853dfc30c1c44f571d3919eeeedef002823b66b6a988d27e919686389
+ARG GRADLE_DOWNLOAD_SHA256=03f2a43a314ff0fb843a85ef68078e06d181c4549c1e5fb983f289382b59b5e3
 RUN set -o errexit -o nounset \
 	&& echo "Downloading Gradle" \
 	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
