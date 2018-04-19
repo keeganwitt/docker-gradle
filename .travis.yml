@@ -27,4 +27,4 @@ install:
 
 script:
   - cd ../test
-  - ./run.sh "${image}" "4.6"
+  - ./run.sh "${image}" "4.7"
