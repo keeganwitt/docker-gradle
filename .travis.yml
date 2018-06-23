@@ -10,8 +10,6 @@ env:
   - VERSION=jdk8 VARIANT=alpine
   - VERSION=jre8
   - VERSION=jre8 VARIANT=alpine
-  - VERSION=jdk9
-  - VERSION=jre9
   - VERSION=jdk10
   - VERSION=jre10
 
