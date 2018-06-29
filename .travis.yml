@@ -4,14 +4,20 @@ services: docker
 env:
   - VERSION=jdk7
   - VERSION=jdk7 VARIANT=alpine
+  - VERSION=jdk7 VARIANT=slim
   - VERSION=jre7
   - VERSION=jre7 VARIANT=alpine
+  - VERSION=jre7 VARIANT=slim
   - VERSION=jdk8
   - VERSION=jdk8 VARIANT=alpine
+  - VERSION=jdk8 VARIANT=slim
   - VERSION=jre8
   - VERSION=jre8 VARIANT=alpine
+  - VERSION=jre8 VARIANT=slim
   - VERSION=jdk10
+  - VERSION=jdk10 VARIANT=slim
   - VERSION=jre10
+  - VERSION=jre10 VARIANT=slim
 
 before_install:
   - env | sort
