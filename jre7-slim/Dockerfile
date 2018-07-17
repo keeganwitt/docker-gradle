@@ -3,7 +3,7 @@ FROM openjdk:7-jre-slim
 CMD ["gradle"]
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.8.1
+ENV GRADLE_VERSION 4.9
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
@@ -11,7 +11,7 @@ RUN apt-get update && \
 		wget && \
 	rm -rf /var/lib/apt/lists/*
 
-ARG GRADLE_DOWNLOAD_SHA256=af334d994b5e69e439ab55b5d2b7d086da5ea6763d78054f49f147b06370ed71
+ARG GRADLE_DOWNLOAD_SHA256=e66e69dce8173dd2004b39ba93586a184628bc6c28461bc771d6835f7f9b0d28
 RUN set -o errexit -o nounset \
 	&& echo "Downloading Gradle" \
 	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
