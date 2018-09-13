@@ -31,4 +31,4 @@ install:
 
 script:
   - cd ../test
-  - ./run.sh "${image}" "4.10"
+  - ./run.sh "${image}" "4.10.1"
