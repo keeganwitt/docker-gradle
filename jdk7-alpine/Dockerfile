@@ -3,9 +3,8 @@ FROM openjdk:7-jdk-alpine
 CMD ["gradle"]
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.10.1
+ENV GRADLE_VERSION 4.10.2
 
-ARG GRADLE_DOWNLOAD_SHA256=e53ce3a01cf016b5d294eef20977ad4e3c13e761ac1e475f1ffad4c6141a92bd
 RUN set -o errexit -o nounset \
 	&& echo "Installing build dependencies" \
 	&& apk add --no-cache --virtual .build-deps \
@@ -15,9 +14,12 @@ RUN set -o errexit -o nounset \
 	\
 	&& echo "Downloading Gradle" \
 	&& wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	&& wget -O gradle.zip.sha256 "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip.sha256" \
 	\
 	&& echo "Checking download hash" \
-	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
+	&& sha=$(cat gradle.zip.sha256) \
+	&& echo "${sha} *gradle.zip" | sha256sum -c - \
+	&& rm gradle.zip.sha256 \
 	\
 	&& echo "Installing Gradle" \
 	&& unzip gradle.zip \
