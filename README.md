@@ -57,14 +57,9 @@ docker run --rm -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/proj
 
 ## Instructions for a new Gradle release
 
-1. Change `ENV GRADLE_VERSION` in all Dockerfiles to new version number.
-1. Update _.travis.yml_.
+1. Run `update.sh <new Gradle version>`.
+1. Commit and push the changes.
 1. Update [official-images](https://github.com/docker-library/official-images) (and [docs](https://github.com/docker-library/docs) if appropriate).
-
-### Prerequisites
-
-* Docker
-* sha256sum
 
 **Note: Java 9 and Java 10 support is experimental**
 
