@@ -5,21 +5,13 @@ CMD ["gradle"]
 ENV GRADLE_HOME /opt/gradle
 ENV GRADLE_VERSION 4.10.2
 
+ARG GRADLE_DOWNLOAD_SHA256=b49c6da1b2cb67a0caf6c7480630b51c70a11ca2016ff2f555eaeda863143a29
 RUN set -o errexit -o nounset \
-	&& echo "Installing build dependencies" \
-	&& apk add --no-cache --virtual .build-deps \
-		ca-certificates \
-		openssl \
-		unzip \
-	\
 	&& echo "Downloading Gradle" \
-	&& wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
-	&& wget -O gradle.zip.sha256 "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip.sha256" \
+	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	\
 	&& echo "Checking download hash" \
-	&& sha=$(cat gradle.zip.sha256) \
-	&& echo "${sha} *gradle.zip" | sha256sum -c - \
-	&& rm gradle.zip.sha256 \
+	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum --check - \
 	\
 	&& echo "Installing Gradle" \
 	&& unzip gradle.zip \
