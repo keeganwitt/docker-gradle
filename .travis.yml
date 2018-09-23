@@ -25,6 +25,7 @@ before_install:
   - image="gradle:${VERSION}${VARIANT:+-$VARIANT}"
   - docker rmi "${image}" || true
   - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
+  - docker images --format "table {{.Repository}}:{{.Tag}}" | tail --lines=+2 | grep "openjdk" | xargs --no-run-if-empty --max-lines=1 docker pull
 
 install:
   - docker build --tag "${image}" .
