@@ -20,8 +20,6 @@ RUN set -o errexit -o nounset \
 	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
 	\
-	&& apk del .build-deps \
-	\
 	&& echo "Adding gradle user and group" \
 	&& addgroup -S -g 1000 gradle \
 	&& adduser -D -S -G gradle -u 1000 -s /bin/ash gradle \
