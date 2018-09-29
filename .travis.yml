@@ -18,6 +18,10 @@ env:
   - VERSION=jdk10 VARIANT=slim
   - VERSION=jre10
   - VERSION=jre10 VARIANT=slim
+  - VERSION=jdk11
+  - VERSION=jdk11 VARIANT=slim
+  - VERSION=jre11
+  - VERSION=jre11 VARIANT=slim
 
 before_install:
   - env | sort
