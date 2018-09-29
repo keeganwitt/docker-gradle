@@ -67,7 +67,5 @@ docker run --rm -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/proj
 1. Commit and push the changes.
 1. Update [official-images](https://github.com/docker-library/official-images) (and [docs](https://github.com/docker-library/docs) if appropriate).
 
-**Note: Java 9, 10 and 11 support is experimental**
-
 ---
 ![Travis Build Status](https://travis-ci.org/keeganwitt/docker-gradle.svg?branch=master)
