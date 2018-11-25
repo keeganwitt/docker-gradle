@@ -12,7 +12,7 @@ else
     home="/root"
 fi
 
-version=$(docker run --user "${user}" --rm "${image}" gradle --version | grep --extended-regexp "^Gradle [0-9.]+$" | grep --extended-regexp --only-matching "[0-9.]+")
+version=$(docker run --user "${user}" --rm "${image}" gradle --version --quiet | grep --extended-regexp "^Gradle [0-9.]+$" | grep --extended-regexp --only-matching "[0-9.]+")
 if [[ "${version}" != "${expectedGradleVersion}" ]]; then
     echo "version '${version}' does not match expected version '${expectedGradleVersion}'" >&2
     exit 1
