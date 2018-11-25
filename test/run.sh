@@ -14,14 +14,14 @@ fi
 
 version=$(docker run --user "${user}" --rm "${image}" gradle --version | grep --extended-regexp "^Gradle [0-9.]+$" | grep --extended-regexp --only-matching "[0-9.]+")
 if [[ "${version}" != "${expectedGradleVersion}" ]]; then
-    echo "version '${version}' does not match expected version '${expectedGradleVersion}'"
+    echo "version '${version}' does not match expected version '${expectedGradleVersion}'" >&2
     exit 1
 fi
 
 if [[ $(echo "${image}" | grep "jre") == "" ]]; then
     echo "Building Java project"
     if [[ $(docker run --user "${user}" --rm --volume "${PWD}/java-quickstart:${home}/project" --workdir "${home}/project" "${image}" gradle clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
-        echo "java-quickstart test failed"
+        echo "java-quickstart test failed" >&2
         exit 1
     fi
 fi
