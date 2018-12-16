@@ -56,6 +56,9 @@ The local Gradle cache can be reused across containers by creating a volume and 
 Note that sharing between concurrently running containers doesn't work currently
 (see [#851](https://github.com/gradle/gradle/issues/851)).
 
+Also, currently it's [not possible](https://github.com/moby/moby/issues/3465) to override the volume declaration of the parent.
+So if you are using this image as a base image and want the Gradle cache to be written into the next layer, you will need to use a new user (or use the `--gradle-user-home`/`-g` argument) so that a new cache is created that isn't mounted to a volume.
+
 ```
 docker volume create --name gradle-cache
 docker run --rm -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>
