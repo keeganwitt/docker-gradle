@@ -2,14 +2,6 @@
 
 ## Supported tags and respective Dockerfile links
 
-* [jdk7](https://github.com/keeganwitt/docker-gradle/blob/master/jdk7/Dockerfile)
-* [jdk7-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk7-slim/Dockerfile)
-* [jdk7-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk7-alpine/Dockerfile)
-
-* [jre7](https://github.com/keeganwitt/docker-gradle/blob/master/jre7/Dockerfile)
-* [jre7-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre7-slim/Dockerfile)
-* [jre7-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jre7-alpine/Dockerfile)
-
 * [latest, jdk8, jdk](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8/Dockerfile)
 * [slim, jdk8-slim, jdk-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-slim/Dockerfile)
 * [alpine, jdk8-alpine, jdk-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-alpine/Dockerfile)
@@ -17,18 +9,6 @@
 * [jre8, jre](https://github.com/keeganwitt/docker-gradle/blob/master/jre8/Dockerfile)
 * [jre8-slim, jre-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre8-slim/Dockerfile)
 * [jre8-alpine, jre-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jre8-alpine/Dockerfile)
-
-* [jdk9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk9/Dockerfile)
-* [jdk9-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk9-slim/Dockerfile)
-
-* [jre9](https://github.com/keeganwitt/docker-gradle/blob/master/jre9/Dockerfile)
-* [jre9-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre9-slim/Dockerfile)
-
-* [jdk10](https://github.com/keeganwitt/docker-gradle/blob/master/jdk10/Dockerfile)
-* [jdk10-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk10-slim/Dockerfile)
-
-* [jre10](https://github.com/keeganwitt/docker-gradle/blob/master/jre10/Dockerfile)
-* [jre10-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre10-slim/Dockerfile)
 
 * [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
 * [jdk11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-slim/Dockerfile)
