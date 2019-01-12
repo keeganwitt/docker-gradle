@@ -46,7 +46,7 @@ docker run --rm -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/proj
 
 ## Instructions for a new Gradle release
 
-1. Run `update.sh <new Gradle version>` or `update.ps1 <new Gradle version>`.
+1. Run `update.sh` or `update.ps1`.
 1. Commit and push the changes.
 1. Update [official-images](https://github.com/docker-library/official-images) (and [docs](https://github.com/docker-library/docs) if appropriate).
 
