@@ -26,4 +26,4 @@ install:
 
 script:
   - cd ../test
-  - ./run.sh "${image}" "5.1.1"
+  - ./run.sh "${image}" "5.2"
