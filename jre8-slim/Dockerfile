@@ -6,7 +6,7 @@ ENV GRADLE_HOME /opt/gradle
 ENV GRADLE_VERSION 5.2.1
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install --yes --no-install-recommends \
         unzip \
         wget && \
     rm -rf /var/lib/apt/lists/*
