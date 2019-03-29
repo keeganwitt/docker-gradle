@@ -3,7 +3,7 @@ FROM openjdk:8-jre-slim
 CMD ["gradle"]
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 5.3
+ENV GRADLE_VERSION 5.3.1
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
@@ -11,7 +11,7 @@ RUN apt-get update && \
         wget && \
     rm -rf /var/lib/apt/lists/*
 
-ARG GRADLE_DOWNLOAD_SHA256=bed2bdd3955be5a09ca7e0201e9d131f194f7f6c466e1795a733733ccfb09f25
+ARG GRADLE_DOWNLOAD_SHA256=1c59a17a054e9c82f0dd881871c9646e943ec4c71dd52ebc6137d17f82337436
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
