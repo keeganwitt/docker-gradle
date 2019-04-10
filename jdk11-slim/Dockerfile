@@ -12,6 +12,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 ARG GRADLE_DOWNLOAD_SHA256=1c59a17a054e9c82f0dd881871c9646e943ec4c71dd52ebc6137d17f82337436
+
+ARG UNAME=gradle
+ARG UID=1000
+ARG GID=1000
+
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
@@ -26,8 +31,8 @@ RUN set -o errexit -o nounset \
     && ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
     \
     && echo "Adding gradle user and group" \
-    && groupadd --system --gid 1000 gradle \
-    && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
+    && groupadd --system --gid $GID gradle \
+    && useradd --system --gid gradle --uid $GID --shell /bin/bash --create-home gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
     \
@@ -35,7 +40,7 @@ RUN set -o errexit -o nounset \
     && ln -s /home/gradle/.gradle /root/.gradle
 
 # Create Gradle volume
-USER gradle
+USER $UNAME
 VOLUME "/home/gradle/.gradle"
 WORKDIR /home/gradle
 
