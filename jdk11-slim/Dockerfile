@@ -32,7 +32,7 @@ RUN set -o errexit -o nounset \
     \
     && echo "Adding gradle user and group" \
     && groupadd --system --gid $GID gradle \
-    && useradd --system --gid gradle --uid $GID --shell /bin/bash --create-home gradle \
+    && useradd --system --gid gradle --uid $UID --shell /bin/bash --create-home gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
     \
