@@ -16,6 +16,12 @@
 * [jre11](https://github.com/keeganwitt/docker-gradle/blob/master/jre11/Dockerfile)
 * [jre11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre11-slim/Dockerfile)
 
+* [jdk12](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12/Dockerfile)
+* [jdk12-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-alpine/Dockerfile)
+* [jdk12-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-slim/Dockerfile)
+* [jre12](https://github.com/keeganwitt/docker-gradle/blob/master/jre12/Dockerfile)
+* [jre12-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jre12-alpine/Dockerfile)
+
 ## What is Gradle?
 
 [Gradle](https://gradle.org/) is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.
