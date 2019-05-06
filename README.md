@@ -19,6 +19,7 @@
 * [jdk12](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12/Dockerfile)
 * [jdk12-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-alpine/Dockerfile)
 * [jdk12-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-slim/Dockerfile)
+
 * [jre12](https://github.com/keeganwitt/docker-gradle/blob/master/jre12/Dockerfile)
 * [jre12-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jre12-alpine/Dockerfile)
 
