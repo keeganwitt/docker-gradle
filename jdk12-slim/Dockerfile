@@ -20,6 +20,7 @@ WORKDIR /home/gradle
 
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
+       ca-certificates \
        unzip \
        wget \
     && rm -rf /var/lib/apt/lists/*
