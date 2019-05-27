@@ -3,15 +3,11 @@ services: docker
 
 env:
   - VERSION=jdk8
-  - VERSION=jdk8 VARIANT=alpine
   - VERSION=jdk8 VARIANT=slim
   - VERSION=jre8
-  - VERSION=jre8 VARIANT=alpine
   - VERSION=jre8 VARIANT=slim
   - VERSION=jdk11
   - VERSION=jdk11 VARIANT=slim
-  - VERSION=jre11
-  - VERSION=jre11 VARIANT=slim
   - VERSION=jdk12
   - VERSION=jre12
 
