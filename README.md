@@ -9,8 +9,7 @@
 * [jre8-slim, jre-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre8-slim/Dockerfile)
 
 * [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
-
-* [jre11](https://github.com/keeganwitt/docker-gradle/blob/master/jre11/Dockerfile)
+* [jdk11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-slim/Dockerfile)
 
 * [jdk12](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12/Dockerfile)
 * [jdk12-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-slim/Dockerfile)
