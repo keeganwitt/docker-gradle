@@ -3,17 +3,12 @@
 ## Supported tags and respective Dockerfile links
 
 * [latest, jdk8, jdk](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8/Dockerfile)
-* [slim, jdk8-slim, jdk-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-slim/Dockerfile)
-
 * [jre8, jre](https://github.com/keeganwitt/docker-gradle/blob/master/jre8/Dockerfile)
-* [jre8-slim, jre-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre8-slim/Dockerfile)
 
 * [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
-* [jdk11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-slim/Dockerfile)
+* [jre11](https://github.com/keeganwitt/docker-gradle/blob/master/jre11/Dockerfile)
 
 * [jdk12](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12/Dockerfile)
-* [jdk12-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-slim/Dockerfile)
-
 * [jre12](https://github.com/keeganwitt/docker-gradle/blob/master/jre12/Dockerfile)
 
 ## What is Gradle?

@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM adoptopenjdk:8-jre-hotspot
 
 CMD ["gradle"]
 
@@ -17,6 +17,12 @@ RUN set -o errexit -o nounset \
 VOLUME /home/gradle/.gradle
 
 WORKDIR /home/gradle
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends \
+       unzip \
+       wget \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV GRADLE_VERSION 5.4.1
 ARG GRADLE_DOWNLOAD_SHA256=7bdbad1e4f54f13c8a78abc00c26d44dd8709d4aedb704d913fb1bb78ac025dc
