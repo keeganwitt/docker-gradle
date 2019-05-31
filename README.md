@@ -4,24 +4,18 @@
 
 * [latest, jdk8, jdk](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8/Dockerfile)
 * [slim, jdk8-slim, jdk-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-slim/Dockerfile)
-* [alpine, jdk8-alpine, jdk-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-alpine/Dockerfile)
 
 * [jre8, jre](https://github.com/keeganwitt/docker-gradle/blob/master/jre8/Dockerfile)
 * [jre8-slim, jre-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre8-slim/Dockerfile)
-* [jre8-alpine, jre-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jre8-alpine/Dockerfile)
 
 * [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
-* [jdk11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-slim/Dockerfile)
 
 * [jre11](https://github.com/keeganwitt/docker-gradle/blob/master/jre11/Dockerfile)
-* [jre11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre11-slim/Dockerfile)
 
 * [jdk12](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12/Dockerfile)
-* [jdk12-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-alpine/Dockerfile)
 * [jdk12-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12-slim/Dockerfile)
 
 * [jre12](https://github.com/keeganwitt/docker-gradle/blob/master/jre12/Dockerfile)
-* [jre12-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jre12-alpine/Dockerfile)
 
 ## What is Gradle?
 
