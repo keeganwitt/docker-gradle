@@ -20,8 +20,14 @@ WORKDIR /home/gradle
 
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
-       unzip \
-       wget \
+        unzip \
+        wget \
+        \
+        bzr \
+        git \
+        mercurial \
+        openssh-client \
+        subversion \
     && rm -rf /var/lib/apt/lists/*
 
 ENV GRADLE_VERSION 5.4.1
