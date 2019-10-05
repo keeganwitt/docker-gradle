@@ -1,6 +1,9 @@
+plugins {
+    id 'java'
+}
+
 apply plugin: 'java'
 
-sourceCompatibility = 1.7
 version = '1.0'
 jar {
     manifest {
@@ -14,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+    implementation group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
+    testImplementation group: 'junit', name: 'junit', version: '4.+'
 }
 
 test {
