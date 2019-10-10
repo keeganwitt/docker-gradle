@@ -26,6 +26,7 @@ RUN apt-get update \
         \
         bzr \
         git \
+        git-lfs \
         mercurial \
         openssh-client \
         subversion \
