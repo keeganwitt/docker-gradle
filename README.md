@@ -17,13 +17,16 @@
 
 ## How to use this image
 
-Note that if you are mounting a volume and the uid running Docker is not _1000_, you should run as user _root_ (`-u root`).
+If you are mounting a volume and the uid/gid running Docker is not *1000*, you should run as user *root* (`-u root`).
+*root* is also the default, so you can also simply not specify a user.
 
 ### Building a Gradle project
 
 Run this from the directory of the Gradle project you want to build.
 
-`docker run --rm -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>`
+`docker run --rm -u gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>`
+
+Note the above command runs using uid/gid 1000 (user *gradle*) to avoid running as root.
 
 ### Reusing the Gradle cache
 
@@ -36,7 +39,7 @@ So if you are using this image as a base image and want the Gradle cache to be w
 
 ```
 docker volume create --name gradle-cache
-docker run --rm -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>
+docker run --rm -u gradle -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>
 ```
 
 ## Instructions for a new Gradle release
