@@ -1,0 +1,11 @@
+.git/
+.idea/
+test/
+.dockerignore
+.gitignore
+.travis.yml
+Dockerfile
+LICENSE
+*.md
+*.ps1
+*.sh
