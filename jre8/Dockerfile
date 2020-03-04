@@ -32,8 +32,8 @@ RUN apt-get update \
         subversion \
     && rm -rf /var/lib/apt/lists/*
 
-ENV GRADLE_VERSION 6.2.1
-ARG GRADLE_DOWNLOAD_SHA256=a68ca7ba57f3404c3f6fc1f70a02d3a7d78652e6b46bbfaff83fc9a17168c279
+ENV GRADLE_VERSION 6.2.2
+ARG GRADLE_DOWNLOAD_SHA256=0f6ba231b986276d8221d7a870b4d98e0df76e6daf1f42e7c0baec5032fb7d17
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
