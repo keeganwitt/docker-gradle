@@ -1,4 +1,4 @@
-FROM adoptopenjdk:13-jre-hotspot
+FROM adoptopenjdk:14-jdk-hotspot
 
 CMD ["gradle"]
 
