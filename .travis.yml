@@ -6,8 +6,8 @@ env:
   - VERSION=jre8
   - VERSION=jdk11
   - VERSION=jre11
-  - VERSION=jdk13
-  - VERSION=jre13
+  - VERSION=jdk14
+  - VERSION=jre14
 
 before_install:
   - env | sort

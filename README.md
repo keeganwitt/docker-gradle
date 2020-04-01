@@ -8,8 +8,8 @@
 * [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
 * [jre11](https://github.com/keeganwitt/docker-gradle/blob/master/jre11/Dockerfile)
 
-* [jdk12](https://github.com/keeganwitt/docker-gradle/blob/master/jdk12/Dockerfile)
-* [jre12](https://github.com/keeganwitt/docker-gradle/blob/master/jre12/Dockerfile)
+* [jdk14](https://github.com/keeganwitt/docker-gradle/blob/master/jdk14/Dockerfile)
+* [jre14](https://github.com/keeganwitt/docker-gradle/blob/master/jre14/Dockerfile)
 
 ## What is Gradle?
 
