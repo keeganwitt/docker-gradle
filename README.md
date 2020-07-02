@@ -24,7 +24,17 @@ If you are mounting a volume and the uid/gid running Docker is not *1000*, you s
 
 Run this from the directory of the Gradle project you want to build.
 
+#### Bash/Zsh
+
 `docker run --rm -u gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>`
+
+#### PowerShell
+
+`docker run --rm -v "${pwd}:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
+
+#### Windows CMD
+
+`docker run --rm -v "%cd%:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
 
 Note the above command runs using uid/gid 1000 (user *gradle*) to avoid running as root.
 
