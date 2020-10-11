@@ -19,6 +19,9 @@ VOLUME /home/gradle/.gradle
 WORKDIR /home/gradle
 
 RUN apt-get update \
+    && apt-get install --yes --no-install-recommends software-properties-common \
+    && add-apt-repository ppa:git-core/ppa --yes \
+    && apt-get update \
     && apt-get install --yes --no-install-recommends \
         fontconfig \
         unzip \
