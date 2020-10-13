@@ -2,14 +2,18 @@
 
 ## Supported tags and respective Dockerfile links
 
-* [latest, jdk8, jdk](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8/Dockerfile)
-* [jre8, jre](https://github.com/keeganwitt/docker-gradle/blob/master/jre8/Dockerfile)
-
-* [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
-* [jre11](https://github.com/keeganwitt/docker-gradle/blob/master/jre11/Dockerfile)
-
-* [jdk14](https://github.com/keeganwitt/docker-gradle/blob/master/jdk14/Dockerfile)
-* [jre14](https://github.com/keeganwitt/docker-gradle/blob/master/jre14/Dockerfile)
+* [latest, latest-hotspot, jdk8, jdk8-hotspot, jdk, jdk-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jdk8/Dockerfile)
+* [latest-openj9, jdk8-openj9, jdk-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jdk8/Dockerfile)
+* [jre8, jre8-hotspot, jre, jre-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jre8/Dockerfile)
+* [jre8-openj9, jre-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jre8/Dockerfile)
+* [jdk11, jdk11-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jdk11/Dockerfile)
+* [jdk11-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jdk11/Dockerfile)
+* [jre11, jre11-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jre11/Dockerfile)
+* [jre11-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jre11/Dockerfile)
+* [jdk14, jdk14-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jdk14/Dockerfile)
+* [jdk14-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jdk14/Dockerfile)
+* [jre14, jre14-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jre14/Dockerfile)
+* [jre14-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jre14/Dockerfile)
 
 ## What is Gradle?
 

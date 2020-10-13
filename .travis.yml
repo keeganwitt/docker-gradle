@@ -2,22 +2,28 @@ language: bash
 services: docker
 
 env:
-  - VERSION=jdk8
-  - VERSION=jre8
-  - VERSION=jdk11
-  - VERSION=jre11
-  - VERSION=jdk14
-  - VERSION=jre14
+  - VERSION=jdk8 VARIANT=hotspot
+  - VERSION=jdk8 VARIANT=openj9
+  - VERSION=jre8 VARIANT=hotspot
+  - VERSION=jre8 VARIANT=openj9
+  - VERSION=jdk11 VARIANT=hotspot
+  - VERSION=jdk11 VARIANT=openj9
+  - VERSION=jre11 VARIANT=hotspot
+  - VERSION=jre11 VARIANT=openj9
+  - VERSION=jdk14 VARIANT=hotspot
+  - VERSION=jdk14 VARIANT=openj9
+  - VERSION=jre14 VARIANT=hotspot
+  - VERSION=jre14 VARIANT=openj9
 
 before_install:
   - env | sort
-  - cd "${VERSION}${VARIANT:+-$VARIANT}"
-  - image="gradle:${VERSION}${VARIANT:+-$VARIANT}"
+  - cd "${VARIANT}/${VERSION}"
+  - image="gradle:${VERSION}-${VARIANT}"
   - docker images --format "table {{.Repository}}:{{.Tag}}" | tail --lines=+2 | grep "adoptopenjdk" | xargs --no-run-if-empty docker pull
 
 install:
   - docker build --tag "${image}" .
 
 script:
-  - cd ../test
+  - cd ../../test
   - ./run.sh "${image}" "6.6.1"
