@@ -10,10 +10,10 @@ env:
   - VERSION=jdk11 VARIANT=openj9
   - VERSION=jre11 VARIANT=hotspot
   - VERSION=jre11 VARIANT=openj9
-  - VERSION=jdk14 VARIANT=hotspot
-  - VERSION=jdk14 VARIANT=openj9
-  - VERSION=jre14 VARIANT=hotspot
-  - VERSION=jre14 VARIANT=openj9
+  - VERSION=jdk15 VARIANT=hotspot
+  - VERSION=jdk15 VARIANT=openj9
+  - VERSION=jre15 VARIANT=hotspot
+  - VERSION=jre15 VARIANT=openj9
 
 before_install:
   - env | sort
