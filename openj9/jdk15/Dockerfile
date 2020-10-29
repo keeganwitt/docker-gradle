@@ -19,15 +19,6 @@ VOLUME /home/gradle/.gradle
 WORKDIR /home/gradle
 
 RUN apt-get update \
-    && apt-get install --yes --no-install-recommends gnupg \
-    && key='E1DD270288B4E6030699E45FA1715D88E1DF1F24' \
-    && export GNUPGHOME="$(mktemp -d)" \
-    && gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" \
-    && gpg --batch --armor --export "$key" > /etc/apt/trusted.gpg.d/git-ppa.gpg.asc \
-    && gpgconf --kill all \
-    && rm -rf "$GNUPGHOME" \
-    && echo 'deb http://ppa.launchpad.net/git-core/ppa/ubuntu bionic main' > /etc/apt/sources.list.d/git-core-ppa.list \
-    && apt-get update \
     && apt-get install --yes --no-install-recommends \
         fontconfig \
         unzip \
