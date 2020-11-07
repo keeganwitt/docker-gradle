@@ -10,10 +10,10 @@
 * [jdk11-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jdk11/Dockerfile)
 * [jre11, jre11-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jre11/Dockerfile)
 * [jre11-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jre11/Dockerfile)
-* [jdk14, jdk14-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jdk14/Dockerfile)
-* [jdk14-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jdk14/Dockerfile)
-* [jre14, jre14-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jre14/Dockerfile)
-* [jre14-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jre14/Dockerfile)
+* [jdk15, jdk15-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jdk15/Dockerfile)
+* [jdk15-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jdk15/Dockerfile)
+* [jre15, jre15-hotspot](https://github.com/keeganwitt/docker-gradle/blob/master/hotspot/jre15/Dockerfile)
+* [jre15-openj9](https://github.com/keeganwitt/docker-gradle/blob/master/openj9/jre15/Dockerfile)
 
 ## What is Gradle?
 
