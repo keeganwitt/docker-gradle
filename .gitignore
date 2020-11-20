@@ -1,9 +1,7 @@
 *.DS_Store
 desktop.ini
 
-test/*/.gradle/
-test/*/build/
-
-*/*.zip
-
-.idea/
+/.idea/
+/test/*/.gradle/
+/test/*/build/
+/*/*/*.zip
