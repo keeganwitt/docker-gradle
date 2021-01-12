@@ -14,10 +14,6 @@ jobs:
         jvm: [hotspot, openj9]
         jvmType: [jdk, jre]
         version: [8, 11, 15]
-        exclude:
-          # temporarily skip OpenJ9 Java 15 due to an OpenJ9 bug
-          - jvm: openj9
-            version: 15
     steps:
       - name: checkout
         uses: actions/checkout@v2
