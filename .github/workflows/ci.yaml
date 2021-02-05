@@ -35,7 +35,7 @@ jobs:
           jvm: ${{ matrix.jvm }}
           jvmType: ${{ matrix.jvmType }}
           version: ${{ matrix.version }}
-          expectedGradleVersion: 6.8.1
+          expectedGradleVersion: 6.8.2
         run: |
           cd test
           ./run.sh "gradle:${jvmType}${version}-${jvm}" "${expectedGradleVersion}"
