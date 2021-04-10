@@ -20,8 +20,8 @@ fi
 
 if [[ $(echo "${image}" | grep "jre") == "" ]]; then
     echo "Building Java project"
-    if [[ $(docker run --user "${user}" --rm --volume "${PWD}/java-quickstart:${home}/project" --workdir "${home}/project" "${image}" gradle --no-daemon clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
-        echo "java-quickstart test failed" >&2
+    if [[ $(docker run --user "${user}" --rm --volume "${PWD}:${home}/project" --workdir "${home}/project" "${image}" gradle --no-daemon clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
+        echo "Test failed" >&2
         exit 1
     fi
 fi
