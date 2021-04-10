@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -o errexit -o nounset
+set -o errexit -o nounset -o pipefail
 
 gradleVersion=$(curl --fail --show-error --silent --location https://services.gradle.org/versions/current | jq --raw-output .version)
 sha=$(curl --fail --show-error --silent --location https://downloads.gradle.org/distributions/gradle-${gradleVersion}-bin.zip.sha256)
