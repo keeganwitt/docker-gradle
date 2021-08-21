@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jdk-hotspot
+FROM eclipse-temurin:16-jdk
 
 CMD ["gradle"]
 

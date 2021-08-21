@@ -1,4 +1,4 @@
-FROM adoptopenjdk:16-jdk-openj9
+FROM eclipse-temurin:8-jre
 
 CMD ["gradle"]
 
@@ -30,14 +30,7 @@ RUN apt-get update \
         mercurial \
         openssh-client \
         subversion \
-    && rm -rf /var/lib/apt/lists/* \
-    \
-    && echo "Testing VCSes" \
-    && which bzr \
-    && which git \
-    && which git-lfs \
-    && which hg \
-    && which svn
+    && rm -rf /var/lib/apt/lists/*
 
 ENV GRADLE_VERSION 7.2
 ARG GRADLE_DOWNLOAD_SHA256=f581709a9c35e9cb92e16f585d2c4bc99b2b1a5f85d2badbd3dc6bff59e1e6dd
