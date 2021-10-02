@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         jvmType: [jdk, jre]
-        version: [8, 11, 16]
+        version: [8, 11, 17]
     steps:
       - name: checkout
         uses: actions/checkout@v2
