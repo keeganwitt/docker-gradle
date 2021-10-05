@@ -11,27 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jvm: [hotspot, openj9]
-        jvmType: [jdk, jre]
-        version: [8, 11, 16]
+        version: [8, 11, 17]
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: build
         env:
-          jvm: ${{ matrix.jvm }}
-          jvmType: ${{ matrix.jvmType }}
           version: ${{ matrix.version }}
         run: |
-          cd "${jvm}/${jvmType}${version}"
-          docker pull "adoptopenjdk:${version}-${jvmType}-${jvm}"
-          docker build --tag "gradle:${jvmType}${version}-${jvm}" .
+          cd "jdk${version}"
+          docker pull "eclipse-temurin:${version}-jdk"
+          docker build --tag "gradle:jdk${version}" .
       - name: test
         env:
-          jvm: ${{ matrix.jvm }}
-          jvmType: ${{ matrix.jvmType }}
           version: ${{ matrix.version }}
           expectedGradleVersion: 7.2
         run: |
           cd test
-          ./run.sh "gradle:${jvmType}${version}-${jvm}" "${expectedGradleVersion}"
+          ./run.sh "gradle:jdk${version}" "${expectedGradleVersion}"
