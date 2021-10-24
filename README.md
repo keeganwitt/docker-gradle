@@ -4,7 +4,9 @@
 
 * [jdk8](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8/Dockerfile)
 * [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
-* [jdk17, jdk, latest](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17/Dockerfile)
+* [jdk11-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-alpine/Dockerfile)
+* [jdk17, latest](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17/Dockerfile)
+* [jdk17-alpine, alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-alpine/Dockerfile)
 
 ## What is Gradle?
 
