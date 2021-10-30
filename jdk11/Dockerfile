@@ -18,7 +18,8 @@ VOLUME /home/gradle/.gradle
 
 WORKDIR /home/gradle
 
-RUN apt-get update \
+RUN set -o errexit -o nounset \
+    && apt-get update \
     && apt-get install --yes --no-install-recommends \
         fontconfig \
         unzip \
