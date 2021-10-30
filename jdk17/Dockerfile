@@ -12,7 +12,7 @@ RUN set -o errexit -o nounset \
     && chown --recursive gradle:gradle /home/gradle \
     \
     && echo "Symlinking root Gradle cache to gradle Gradle cache" \
-    && ln -s /home/gradle/.gradle /root/.gradle
+    && ln --symbolic /home/gradle/.gradle /root/.gradle
 
 VOLUME /home/gradle/.gradle
 
@@ -31,7 +31,7 @@ RUN set -o errexit -o nounset \
         mercurial \
         openssh-client \
         subversion \
-    && rm -rf /var/lib/apt/lists/* \
+    && rm --recursive --force /var/lib/apt/lists/* \
     \
     && echo "Testing VCSes" \
     && which bzr \
