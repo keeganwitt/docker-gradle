@@ -21,7 +21,6 @@ WORKDIR /home/gradle
 RUN set -o errexit -o nounset \
     && apt-get update \
     && apt-get install --yes --no-install-recommends \
-        fontconfig \
         unzip \
         wget \
         \
