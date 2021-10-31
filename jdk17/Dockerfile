@@ -1,4 +1,19 @@
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:17-jdk AS base
+
+ARG TARGETARCH
+
+FROM base AS base-amd64
+
+FROM base AS base-arm
+
+FROM base AS base-arm64
+ENV GRADLE_OPTS="-Djdk.lang.Process.launchMechanism=vfork"
+
+FROM base AS base-ppc64le
+
+FROM base AS base-s390x
+
+FROM base-$TARGETARCH
 
 CMD ["gradle"]
 
