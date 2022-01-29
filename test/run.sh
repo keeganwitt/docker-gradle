@@ -18,12 +18,10 @@ if [[ "${version}" != "${expectedGradleVersion}" ]]; then
     exit 1
 fi
 
-if [[ $(echo "${image}" | grep "jre") == "" ]]; then
-    echo "Building Java project"
-    if [[ $(docker run --user "${user}" --rm --volume "${PWD}:${home}/project" --workdir "${home}/project" "${image}" gradle --no-daemon clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
-        echo "Test failed" >&2
-        exit 1
-    fi
+echo "Building Java project"
+if [[ $(docker run --user "${user}" --rm --volume "${PWD}:${home}/project" --workdir "${home}/project" "${image}" gradle --no-daemon clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
+    echo "Test failed" >&2
+    exit 1
 fi
 
 echo "All tests succeeded"
