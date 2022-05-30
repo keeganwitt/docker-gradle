@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:11-jdk-focal
 
 CMD ["gradle"]
 
