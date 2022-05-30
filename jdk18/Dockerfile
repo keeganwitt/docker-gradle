@@ -1,4 +1,4 @@
-FROM eclipse-temurin:18-jdk
+FROM eclipse-temurin:18-jdk-jammy
 
 CMD ["gradle"]
 
