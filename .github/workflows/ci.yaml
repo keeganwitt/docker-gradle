@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [8-jdk, 11-jdk, 11-jdk-alpine, 17-jdk, 17-jdk-alpine, 18-jdk, 18-jdk-alpine]
+        version: [8-jdk, 8-jdk-focal, 11-jdk, 11-jdk-focal, 11-jdk-alpine, 17-jdk, 17-jdk-focal, 17-jdk-alpine, 18-jdk, 18-jdk-focal, 18-jdk-alpine]
     steps:
       - name: checkout
         uses: actions/checkout@v2
