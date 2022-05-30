@@ -19,7 +19,16 @@ if [[ "${version}" != "${expectedGradleVersion}" ]]; then
 fi
 
 echo "Building Java project"
-if [[ $(docker run --user "${user}" --rm --volume "${PWD}:${home}/project" --workdir "${home}/project" "${image}" gradle --no-daemon clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
+
+case "$(uname -s)" in
+  CYGWIN*|MINGW32*|MSYS*|MINGW*)
+    pwd=$(cygpath --windows "${PWD}")
+    ;;
+  *)
+    pwd="${PWD}"
+    ;;
+esac
+if [[ $(docker run --user "${user}" --rm --volume "${pwd}:${home}/project" --workdir "${home}/project" "${image}" gradle --no-daemon clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
     echo "Test failed" >&2
     exit 1
 fi
