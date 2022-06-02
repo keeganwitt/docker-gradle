@@ -3,11 +3,15 @@
 ## Supported tags and respective Dockerfile links
 
 * [jdk8](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8/Dockerfile)
+* [jdk8-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-focal/Dockerfile)
 * [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
+* [jdk11-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-focal/Dockerfile)
 * [jdk11-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-alpine/Dockerfile)
 * [jdk17, latest](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17/Dockerfile)
+* [jdk17-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-focal/Dockerfile)
 * [jdk17-alpine, alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-alpine/Dockerfile)
 * [jdk18](https://github.com/keeganwitt/docker-gradle/blob/master/jdk18/Dockerfile)
+* [jdk18-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk18-focal/Dockerfile)
 * [jdk18-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk18-alpine/Dockerfile)
 
 ## What is Gradle?
