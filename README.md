@@ -33,11 +33,11 @@ Run this from the directory of the Gradle project you want to build.
 
 #### PowerShell
 
-`docker run --rm -v "${pwd}:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
+`docker run --rm -u gradle -v "${pwd}:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
 
 #### Windows CMD
 
-`docker run --rm -v "%cd%:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
+`docker run --rm -u gradle -v "%cd%:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
 
 Note the above command runs using uid/gid 1000 (user *gradle*) to avoid running as root.
 
