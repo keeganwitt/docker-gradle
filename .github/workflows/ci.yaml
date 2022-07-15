@@ -26,7 +26,7 @@ jobs:
       - name: test
         env:
           version: ${{ matrix.version }}
-          expectedGradleVersion: 7.4.2
+          expectedGradleVersion: 7.5
         run: |
           cd test
           ./run.sh "gradle:${version}" "${expectedGradleVersion}"
