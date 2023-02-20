@@ -32,8 +32,8 @@ RUN set -o errexit -o nounset \
     && which hg \
     && which svn
 
-ENV GRADLE_VERSION 8.0
-ARG GRADLE_DOWNLOAD_SHA256=4159b938ec734a8388ce03f52aa8f3c7ed0d31f5438622545de4f83a89b79788
+ENV GRADLE_VERSION 8.0.1
+ARG GRADLE_DOWNLOAD_SHA256=1b6b558be93f29438d3df94b7dfee02e794b94d9aca4611a92cdb79b6b88e909
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
