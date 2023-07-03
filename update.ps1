@@ -1,4 +1,4 @@
-$gradleVersion = $((Invoke-WebRequest https://services.gradle.org/versions/current | ConvertFrom-Json).version)
+$gradleVersion = '7.6.2'
 $sha = $(Invoke-RestMethod -Uri https://downloads.gradle.org/distributions/gradle-${gradleVersion}-bin.zip.sha256)
 
 dir -Recurse -Filter Dockerfile | ForEach-Object {
