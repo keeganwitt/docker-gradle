@@ -26,8 +26,6 @@ RUN set -o errexit -o nounset \
     && echo "org.gradle.java.installations.auto-detect=false" > /home/gradle/.gradle/gradle.properties \
     && echo "org.gradle.java.installations.auto-download=false" >> /home/gradle/.gradle/gradle.properties \
     && echo "org.gradle.java.installations.fromEnv=JAVA20_HOME" >> /home/gradle/.gradle/gradle.properties
-    # the line below could have been used instead of using the env var
-#    && echo "org.gradle.java.installations.paths=/opt/java/openjdk20" >> /home/gradle/.gradle/gradle.properties
 
 VOLUME /home/gradle/.gradle
 
