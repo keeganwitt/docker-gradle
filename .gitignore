@@ -3,4 +3,5 @@ desktop.ini
 .gradle/
 build/
 .idea/
+*.tar.gz
 *.zip

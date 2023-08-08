@@ -18,7 +18,7 @@ if [[ "${version}" != "${expectedGradleVersion}" ]]; then
     exit 1
 fi
 
-echo "Building Java project"
+echo "Building Graal project"
 
 case "$(uname -s)" in
   CYGWIN*|MINGW32*|MSYS*|MINGW*)
@@ -28,7 +28,7 @@ case "$(uname -s)" in
     pwd="${PWD}"
     ;;
 esac
-if [[ $(docker run --user "${user}" --rm --volume "${pwd}:${home}/project" --workdir "${home}/project" "${image}" gradle clean classes | grep "BUILD SUCCESSFUL") == "" ]]; then
+if [[ $(docker run --user "${user}" --rm --volume "${pwd}:${home}/project" --workdir "${home}/project" "${image}" gradle clean nativeCompile | grep "BUILD SUCCESSFUL") == "" ]]; then
     echo "Test failed" >&2
     exit 1
 fi
