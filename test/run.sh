@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -o errexit -o nounset
+set -o errexit -o nounset -o pipefail
 
 image="${1}"
 expectedGradleVersion="${2}"
@@ -28,7 +28,7 @@ case "$(uname -s)" in
     pwd="${PWD}"
     ;;
 esac
-if [[ $(docker run --user "${user}" --rm --volume "${pwd}:${home}/project" --workdir "${home}/project" "${image}" gradle --no-daemon clean test | grep "BUILD SUCCESSFUL") == "" ]]; then
+if [[ $(docker run --user "${user}" --rm --volume "${pwd}:${home}/project" --workdir "${home}/project" "${image}" gradle clean build | grep "BUILD SUCCESSFUL") == "" ]]; then
     echo "Test failed" >&2
     exit 1
 fi
