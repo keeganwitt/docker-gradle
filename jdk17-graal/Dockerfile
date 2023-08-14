@@ -51,8 +51,10 @@ RUN set -o errexit -o nounset \
     && which hg \
     && which svn
 
-ENV JAVA_HOME=/opt/graalvm
+ENV JAVA_HOME=/opt/java/graalvm
 RUN set -o errexit -o nounset \
+    && mkdir /opt/java \
+    \
     && echo "Downloading GraalVM" \
     && JDK_VERSION=17.0.8 \
     && GRAALVM_DOWNLOAD_SHA256=1dffdf5c7cc5bf38558e9f093eef6a14072a6dff0be3a9906208b37b53ecc009 \
