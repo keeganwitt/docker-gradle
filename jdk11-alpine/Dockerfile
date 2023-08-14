@@ -38,7 +38,7 @@ RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
     \
-    && echo "Checking download hash" \
+    && echo "Checking Gradle download hash" \
     && echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
     \
     && echo "Installing Gradle" \
