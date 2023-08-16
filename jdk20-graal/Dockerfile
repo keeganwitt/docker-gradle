@@ -103,4 +103,3 @@ RUN set -o errexit -o nounset \
     \
     # chown last so that it applies to /home/gradle/.gradle/native
     && chown --recursive gradle:gradle /home/gradle
-
