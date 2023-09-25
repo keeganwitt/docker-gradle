@@ -53,16 +53,16 @@ RUN set -o errexit -o nounset \
     && which svn
 
 ENV JAVA_HOME=/opt/java/graalvm
+ENV JAVA_VERSION=17.0.8
 RUN set -o errexit -o nounset \
     && mkdir /opt/java \
     \
     && echo "Downloading GraalVM" \
-    && JDK_VERSION=17.0.8 \
     && GRAALVM_DOWNLOAD_SHA256=1dffdf5c7cc5bf38558e9f093eef6a14072a6dff0be3a9906208b37b53ecc009 \
     && ARCHITECTURE=$(dpkg --print-architecture) \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_ARCHITECTURE=linux-x64; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_ARCHITECTURE=linux-aarch64; fi \
-    && GRAALVM_PKG=https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JDK_VERSION}/graalvm-community-jdk-${JDK_VERSION}_${GRAALVM_ARCHITECTURE}_bin.tar.gz \
+    && GRAALVM_PKG=https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}_${GRAALVM_ARCHITECTURE}_bin.tar.gz \
     && wget --no-verbose --output-document=graalvm.tar.gz "${GRAALVM_PKG}" \
     \
     && echo "Checking GraalVM download hash" \
