@@ -81,7 +81,6 @@ RUN set -o errexit -o nounset \
     && echo "Testing GraalVM installation" \
     && java --version \
     && javac --version \
-    && gu --version \
     && native-image --version
 
 ENV GRADLE_VERSION 8.4
