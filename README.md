@@ -15,6 +15,9 @@
 * [jdk21, jdk21-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21/Dockerfile)
 * [jdk21-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-alpine/Dockerfile)
 * [jdk21-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-graal/Dockerfile)
+* [jdk17and21](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17and21/Dockerfile)
+* [jdk17and21-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17and21-alpine/Dockerfile)
+* [jdk17and21-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17and21-graal/Dockerfile)
 
 ## What is Gradle?
 
@@ -55,6 +58,58 @@ So if you are using this image as a base image and want the Gradle cache to be w
 ```
 docker volume create --name gradle-cache
 docker run --rm -u gradle -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>
+```
+
+### Java 21 with Gradle 8.4
+
+Gradle 8.4 supported compilation targeting Java 21 bytecode, but not executing Gradle using Java 21. The [release notes](https://docs.gradle.org/8.4/release-notes.html#jvm) say
+
+> Gradle now supports using Java 21 for compiling, testing, and starting other Java programs. This can be accomplished using toolchains.
+
+> Currently, you cannot run Gradle on Java 21 because Kotlin lacks support for JDK 21. However, support for running Gradle with Java 21 is expected in future versions.
+
+They also note this in their [compatibility guide](https://docs.gradle.org/current/userguide/compatibility.html).
+
+The jdk17and21 images contain both Java 17 (for running Gradle) and Java 21 (for use in the toolchain to compile JVM classes). The image also sets the options below for you in `~/.gradle/gradle.properties`, to instruct Gradle to use the Java 21 installation. It sets two environment variables with the paths of each Java installation (`JAVA17_HOME` and `JAVA21_HOME`). `JAVA17_HOME` and `JAVA_HOME` are the same path.
+
+```
+org.gradle.java.installations.auto-detect=false
+org.gradle.java.installations.auto-download=false
+org.gradle.java.installations.fromEnv=JAVA21_HOME
+```
+
+To take advantage of this setup, you need to configure your build file to use Java 21 like below (the example shows how to configure both the Java and Kotlin plugins).
+
+*Groovy DSL*
+
+```groovy
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+```
+
+*Kotlin DSL*
+
+```kotlin
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
 ```
 
 ## Instructions for a new Gradle release
