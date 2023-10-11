@@ -10,9 +10,6 @@
 * [jdk17, jdk17-jammy, latest](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17/Dockerfile)
 * [jdk17-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-focal/Dockerfile)
 * [jdk17-alpine, alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-alpine/Dockerfile)
-* [jdk19, jdk19-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk19/Dockerfile)
-* [jdk19-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk19-focal/Dockerfile)
-* [jdk19-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk19-alpine/Dockerfile)
 
 ## What is Gradle?
 
