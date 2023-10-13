@@ -24,7 +24,7 @@ Gradle currently has incomplete support for Java 21. The [8.4 release notes](htt
 >
 > You cannot currently run Gradle on Java 21 because Kotlin lacks support for JDK 21. However, you can expect support for running Gradle with Java 21 in a future version.
 
-They also note this in their [compatibility guide](https://docs.gradle.org/current/userguide/compatibility.html).
+This is also noted in the [compatibility guide](https://docs.gradle.org/current/userguide/compatibility.html).
 This means that you can't use Gradle with Java 21 with Kotlin DSL buildscripts, only Groovy DSL scripts.
 
 This means things like using the [`kotlin-dsl` plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin) in a buildSrc script aren't currently supported. The only way to run such projects for Java 21 is to launch Gradle with another JVM (8, 11, or 17) and then use Java 21 in a toolchain (requiring an image with both JVMs installed). This image doesn't exist currently. If this is something you need, please upvote [this PR](https://github.com/keeganwitt/docker-gradle/pull/265#issue-1938848965).
