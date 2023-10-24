@@ -13,11 +13,11 @@ dir -Recurse -Filter Dockerfile | ForEach-Object {
     (Get-Content -Path $_.FullName) -replace "GRADLE_DOWNLOAD_SHA256=.+$", "GRADLE_DOWNLOAD_SHA256=${sha}" | Set-Content $_.FullName
     if ($((Get-Item $_.FullName).Directory.Name) -match "jdk17.+graal")
     {
-        (Get-Content -Path $_.FullName) -replace "JDK_VERSION=[^ ]+", "JDK_VERSION=${latestGraal17}" | Set-Content $_.FullName
+        (Get-Content -Path $_.FullName) -replace "JAVA_VERSION=[^ ]+", "JAVA_VERSION=${latestGraal17}" | Set-Content $_.FullName
     }
     if ($((Get-Item $_.FullName).Directory.Name) -match "jdk21.+graal")
     {
-        (Get-Content -Path $_.FullName) -replace "JDK_VERSION=[^ ]+", "JDK_VERSION=${latestGraal21}" | Set-Content $_.FullName
+        (Get-Content -Path $_.FullName) -replace "JAVA_VERSION=[^ ]+", "JAVA_VERSION=${latestGraal21}" | Set-Content $_.FullName
     }
 }
 
