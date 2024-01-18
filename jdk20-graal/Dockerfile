@@ -10,6 +10,7 @@ RUN set -o errexit -o nounset \
     && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
+    && chmod -R o+rwx /home/gradle \
     \
     && echo "Symlinking root Gradle cache to gradle Gradle cache" \
     && ln --symbolic /home/gradle/.gradle /root/.gradle
