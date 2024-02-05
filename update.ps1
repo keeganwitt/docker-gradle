@@ -1,4 +1,4 @@
-$gradleVersion = '7.6.3'
+$gradleVersion = '7.6.4'
 $sha = $(Invoke-RestMethod -Uri https://downloads.gradle.org/distributions/gradle-${gradleVersion}-bin.zip.sha256)
 
 $latestGraal17 = $(((Invoke-WebRequest "https://api.github.com/repos/graalvm/graalvm-ce-builds/releases?per_page=6&page=1" | ConvertFrom-Json).tag_name | Select-String -Pattern "jdk-17").ToString().Replace("jdk-", ""))
