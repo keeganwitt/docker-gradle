@@ -29,6 +29,9 @@ jobs:
           - jdk21
           - jdk21-alpine
           - jdk21-graal
+          - jdk22
+          - jdk22-alpine
+          - jdk22-graal
     steps:
       - name: checkout
         uses: actions/checkout@v2
