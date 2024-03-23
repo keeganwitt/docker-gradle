@@ -32,7 +32,7 @@ jobs:
       - name: test
         env:
           version: ${{ matrix.version }}
-          expectedGradleVersion: "8.6"
+          expectedGradleVersion: "8.7"
         run: |
           if [[ "${version}" =~ "graal" ]]; then
             cd test-graal
