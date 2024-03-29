@@ -17,7 +17,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [jdk11, jdk11-alpine, jdk11-focal, jdk17, jdk17-alpine, jdk17-focal, jdk17-graal, jdk17-focal-graal, jdk21, jdk21-alpine, jdk21-graal]
+        version:
+          - jdk11
+          - jdk11-alpine
+          - jdk11-focal
+          - jdk17
+          - jdk17-alpine
+          - jdk17-focal
+          - jdk17-graal
+          - jdk17-focal-graal
+          - jdk21
+          - jdk21-alpine
+          - jdk21-graal
     steps:
       - name: checkout
         uses: actions/checkout@v2
