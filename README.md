@@ -15,6 +15,9 @@
 * [jdk21, jdk21-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21/Dockerfile)
 * [jdk21-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-alpine/Dockerfile)
 * [jdk21-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-graal/Dockerfile)
+* [jdk-lts-and-current](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21and22/Dockerfile)
+* [jdk-lts-and-current-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21and22-alpine/Dockerfile)
+* [jdk-lts-and-current-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21and22-graal/Dockerfile)
 
 ## What is Gradle?
 

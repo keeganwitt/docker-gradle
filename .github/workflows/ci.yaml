@@ -29,6 +29,9 @@ jobs:
           - jdk21
           - jdk21-alpine
           - jdk21-graal
+          - jdk21and22
+          - jdk21and22-alpine
+          - jdk21and22-graal
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -37,17 +40,19 @@ jobs:
           version: ${{ matrix.version }}
         run: |
           cd "${version}"
-          baseImage=$(grep "FROM " Dockerfile | cut -d' ' -f2)
-          docker pull "${baseImage}"
+          grep "FROM " Dockerfile | cut -d' ' -f2 | xargs -I{} docker pull {}
           docker build --tag "gradle:${version}" .
       - name: test
         env:
           version: ${{ matrix.version }}
           expectedGradleVersion: "8.7"
         run: |
+          toolchainJavaVersion=$(echo "${version}" | grep --extended-regex --only-matching '[0-9]+' | tail --lines -1)
           if [[ "${version}" =~ "graal" ]]; then
               cd test-graal
+              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" app/build.gradle
           else
               cd test
+              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" lib/build.gradle.kts
           fi
           ./run.sh "gradle:${version}" "${expectedGradleVersion}"
