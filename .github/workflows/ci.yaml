@@ -46,8 +46,8 @@ jobs:
           expectedGradleVersion: "8.7"
         run: |
           if [[ "${version}" =~ "graal" ]]; then
-            cd test-graal
+              cd test-graal
           else
-            cd test
+              cd test
           fi
           ./run.sh "gradle:${version}" "${expectedGradleVersion}"
