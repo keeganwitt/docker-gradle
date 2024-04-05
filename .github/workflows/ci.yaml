@@ -17,42 +17,72 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version:
-          - jdk11
-          - jdk11-alpine
-          - jdk11-focal
-          - jdk17
-          - jdk17-alpine
-          - jdk17-focal
-          - jdk17-graal
-          - jdk17-focal-graal
-          - jdk21
-          - jdk21-alpine
-          - jdk21-graal
-          - jdk21and22
-          - jdk21and22-alpine
-          - jdk21and22-graal
+        versions:
+          - directory: jdk11
+            ltsJavaVersion: 11
+          - directory: jdk11-alpine
+            ltsJavaVersion: 11
+            variant: alpine
+          - directory: jdk11-focal
+            ltsJavaVersion: 11
+            variant: focal
+          - directory: jdk17
+            ltsJavaVersion: 17
+          - directory: jdk17-alpine
+            ltsJavaVersion: 17
+            variant: alpine
+          - directory: jdk17-focal
+            ltsJavaVersion: 17
+            variant: focal
+          - directory: jdk17-graal
+            ltsJavaVersion: 17
+            variant: graal
+          - directory: jdk17-focal-graal
+            ltsJavaVersion: 17
+            variant: focal-graal
+          - directory: jdk21
+            ltsJavaVersion: 21
+          - directory: jdk21-alpine
+            ltsJavaVersion: 21
+            variant: alpine
+          - directory: jdk21-graal
+            ltsJavaVersion: 21
+            variant: graal
+          - directory: jdk-lts-and-current
+            ltsJavaVersion: 21
+            currentJavaVersion: 22
+          - directory: jdk-lts-and-current-alpine
+            ltsJavaVersion: 21
+            currentJavaVersion: 22
+            variant: alpine
+          - directory: jdk-lts-and-current-graal
+            ltsJavaVersion: 21
+            currentJavaVersion: 22
+            variant: graal
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: build
         env:
-          version: ${{ matrix.version }}
+          directory: ${{ matrix.versions.directory }}
         run: |
-          cd "${version}"
+          cd "${directory}"
           grep "FROM " Dockerfile | cut -d' ' -f2 | xargs -I{} docker pull {}
-          docker build --tag "gradle:${version}" .
+          docker build --tag "gradle:${directory}" .
       - name: test
         env:
-          version: ${{ matrix.version }}
+          directory: ${{ matrix.versions.directory }}
+          ltsJavaVersion: ${{ matrix.versions.ltsJavaVersion }}
+          currentJavaVersion: ${{ matrix.versions.currentJavaVersion }}
+          variant: ${{ matrix.versions.variant }}
           expectedGradleVersion: "8.7"
         run: |
-          toolchainJavaVersion=$(echo "${version}" | grep --extended-regex --only-matching '[0-9]+' | tail --lines -1)
-          if [[ "${version}" =~ "graal" ]]; then
+          toolchainJavaVersion="${currentJavaVersion:-${ltsJavaVersion}}"
+          if [[ "${variant:-''}" = "graal" ]]; then
               cd test-graal
               sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" app/build.gradle
           else
               cd test
               sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" lib/build.gradle.kts
           fi
-          ./run.sh "gradle:${version}" "${expectedGradleVersion}"
+          ./run.sh "gradle:${directory}" "${expectedGradleVersion}"

@@ -1,10 +1,10 @@
-FROM eclipse-temurin:22-jdk-alpine AS java22
+FROM eclipse-temurin:22-jdk-alpine AS java_current
 
 FROM eclipse-temurin:21-jdk-alpine
 
-COPY --from=java22 /opt/java/openjdk /opt/java/openjdk22
-ENV JAVA21_HOME /opt/java/openjdk21
-ENV JAVA22_HOME /opt/java/openjdk22
+COPY --from=java_current /opt/java/openjdk /opt/java/openjdk22
+ENV JAVA_LTS_HOME /opt/java/openjdk21
+ENV JAVA_CURRENT_HOME /opt/java/openjdk22
 
 CMD ["gradle"]
 
@@ -23,7 +23,7 @@ RUN set -o errexit -o nounset \
    && echo "Ensuring Gradle detects installed JDKs" \
    && echo "org.gradle.java.installations.auto-detect=false" > /home/gradle/.gradle/gradle.properties \
    && echo "org.gradle.java.installations.auto-download=false" >> /home/gradle/.gradle/gradle.properties \
-   && echo "org.gradle.java.installations.fromEnv=JAVA21_HOME,JAVA22_HOME" >> /home/gradle/.gradle/gradle.properties
+   && echo "org.gradle.java.installations.fromEnv=JAVA_LTS_HOME,JAVA_CURRENT_HOME" >> /home/gradle/.gradle/gradle.properties
 
 VOLUME /home/gradle/.gradle
 

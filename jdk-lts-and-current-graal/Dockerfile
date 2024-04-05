@@ -16,7 +16,7 @@ RUN set -o errexit -o nounset \
    && echo "Ensuring Gradle detects installed JDKs" \
    && echo "org.gradle.java.installations.auto-detect=false" > /home/gradle/.gradle/gradle.properties \
    && echo "org.gradle.java.installations.auto-download=false" >> /home/gradle/.gradle/gradle.properties \
-   && echo "org.gradle.java.installations.fromEnv=JAVA21_HOME,JAVA22_HOME" >> /home/gradle/.gradle/gradle.properties
+   && echo "org.gradle.java.installations.fromEnv=JAVA_LTS_HOME,JAVA_CURRENT_HOME" >> /home/gradle/.gradle/gradle.properties
 
 VOLUME /home/gradle/.gradle
 
@@ -57,13 +57,13 @@ RUN set -o errexit -o nounset \
     && which svn
 
 ENV JAVA_HOME=/opt/java/graalvm
-ENV JAVA21_HOME /opt/java/graalvm21
-ENV JAVA22_HOME /opt/java/graalvm22
+ENV JAVA_LTS_HOME /opt/java/graalvm21
+ENV JAVA_CURRENT_HOME /opt/java/graalvm22
 RUN set -o errexit -o nounset \
     && mkdir /opt/java \
     \
-    && echo "Downloading GraalVM 21" \
-    && JDK_21_VERSION=21.0.2 \
+    && echo "Downloading LTS GraalVM" \
+    && JDK_VERSION=21.0.2 \
     && GRAALVM_AMD64_DOWNLOAD_SHA256=b048069aaa3a99b84f5b957b162cc181a32a4330cbc35402766363c5be76ae48 \
     && GRAALVM_AARCH64_DOWNLOAD_SHA256=a34be691ce68f0acf4655c7c6c63a9a49ed276a11859d7224fd94fc2f657cd7a \
     && ARCHITECTURE=$(dpkg --print-architecture) \
@@ -72,37 +72,37 @@ RUN set -o errexit -o nounset \
     && GRAALVM_PKG=https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JDK_VERSION}/graalvm-community-jdk-${JDK_VERSION}_${GRAALVM_ARCHITECTURE}_bin.tar.gz \
     && wget --no-verbose --output-document=graalvm.tar.gz "${GRAALVM_PKG}" \
     \
-    && echo "Checking GraalVM 21 download hash" \
+    && echo "Checking LTS GraalVM download hash" \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_DOWNLOAD_SHA256="${GRAALVM_AMD64_DOWNLOAD_SHA256}"; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_DOWNLOAD_SHA256="${GRAALVM_AARCH64_DOWNLOAD_SHA256}"; fi \
     && echo "${GRAALVM_DOWNLOAD_SHA256} *graalvm.tar.gz" | sha256sum --check - \
     \
-    && echo "Installing GraalVM 21" \
+    && echo "Installing LTS GraalVM" \
     && tar --extract --gunzip --file graalvm.tar.gz \
     && rm graalvm.tar.gz \
     && mv graalvm-* /opt/java/graalvm21 \
     \
-    && echo "Downloading GraalVM 22" \
-    && JDK_22_VERSION=22.0.0 \
+    && echo "Downloading current GraalVM" \
+    && JDK_VERSION=22.0.0 \
     && GRAALVM_AMD64_DOWNLOAD_SHA256=e5eeb486a23101753f18181d002c3ede9da13c463fb61d3ea448abe774db0657 \
     && GRAALVM_AARCH64_DOWNLOAD_SHA256=da9a0e11b110ebccff33ade502516d00f574ec3247868007e452cef4143e0904 \
     && ARCHITECTURE=$(dpkg --print-architecture) \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_ARCHITECTURE=linux-x64; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_ARCHITECTURE=linux-aarch64; fi \
-    && GRAALVM_PKG=https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JDK_22_VERSION}/graalvm-community-jdk-${JDK_22_VERSION}_${GRAALVM_ARCHITECTURE}_bin.tar.gz \
+    && GRAALVM_PKG=https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JDK_VERSION}/graalvm-community-jdk-${JDK_VERSION}_${GRAALVM_ARCHITECTURE}_bin.tar.gz \
     && wget --no-verbose --output-document=graalvm.tar.gz "${GRAALVM_PKG}" \
     \
-    && echo "Checking GraalVM 22 download hash" \
+    && echo "Checking current GraalVM download hash" \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_DOWNLOAD_SHA256="${GRAALVM_AMD64_DOWNLOAD_SHA256}"; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_DOWNLOAD_SHA256="${GRAALVM_AARCH64_DOWNLOAD_SHA256}"; fi \
     && echo "${GRAALVM_DOWNLOAD_SHA256} *graalvm.tar.gz" | sha256sum --check - \
     \
-    && echo "Installing GraalVM 22" \
+    && echo "Installing current GraalVM" \
     && tar --extract --gunzip --file graalvm.tar.gz \
     && rm graalvm.tar.gz \
     && mv graalvm-* /opt/java/graalvm22 \
     \
-    && echo "Default Java to GraalVM 21" \
+    && echo "Default Java to LTS GraalVM" \
     && ln --symbolic /opt/java/graalvm21 /opt/java/graalvm \
     && for bin in /opt/java/graalvm21/bin/*; do \
         base="$(basename "$bin")"; \
