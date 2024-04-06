@@ -20,8 +20,20 @@ tasks.named('test') {
 }
 
 graalvmNative {
-    binaries.all {
-        resources.autodetect()
+    binaries {
+        all {
+            resources.autodetect()
+        }
+        main {
+            javaLauncher = javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(00)
+            }
+        }
     }
-    toolchainDetection = false
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(00)
+    }
 }

@@ -15,6 +15,28 @@
 * [jdk21, jdk21-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21/Dockerfile)
 * [jdk21-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-alpine/Dockerfile)
 * [jdk21-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-graal/Dockerfile)
+* [jdk-lts-and-current](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current/Dockerfile)
+* [jdk-lts-and-current-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current-alpine/Dockerfile)
+* [jdk-lts-and-current-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current-graal/Dockerfile)
+
+### lts-and-current images
+
+Gradle's support for new Java releases historically has lagged for multiple months.
+This means most users wanting to use the latest Java release will need to do so using toolchains.
+Toolchains are 
+documented [here](https://docs.gradle.org/current/userguide/toolchains.html) and [here](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html#configuration-toolchains) for GraalVM.
+The lts-and-current images provide both the latest LTS JDK and the latest (LTS or non-LTS) JDK.
+This allows Gradle to be launched with a supported JDK (the latest LTS release)
+and configure the compilation using toolchains to use the latest current JDK.
+This is done by putting the content below in `/home/gradle/.gradle/gradle.properties`.
+```properties
+org.gradle.java.installations.auto-detect=false
+org.gradle.java.installations.auto-download=false
+org.gradle.java.installations.fromEnv=JAVA_LTS_HOME,JAVA_CURRENT_HOME
+```
+The `JAVA_LTS_HOME` environment variable points to the path
+where the latest LTS JDK is installed and `JAVA_CURRENT_HOME` points to the latest current JDK.
+These may point to the same path if the latest JDK is an LTS release.
 
 ## What is Gradle?
 
