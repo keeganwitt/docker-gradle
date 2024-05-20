@@ -3,8 +3,10 @@ FROM eclipse-temurin:22-jdk-alpine AS java_current
 FROM eclipse-temurin:21-jdk-alpine
 
 COPY --from=java_current /opt/java/openjdk /opt/java/openjdk22
-ENV JAVA_LTS_HOME /opt/java/openjdk21
+RUN set -o errexit -o nounset \
+    && ln -s /opt/java/openjdk /opt/java/openjdk21
 ENV JAVA_CURRENT_HOME /opt/java/openjdk22
+ENV JAVA_LTS_HOME /opt/java/openjdk21
 
 CMD ["gradle"]
 
