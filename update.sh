@@ -26,11 +26,11 @@ sed --regexp-extended --in-place "s/GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_
 sed --regexp-extended --in-place "s/GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal21aarch64Sha}/" ./jdk21-graal/Dockerfile
 
 graal22Version=$( curl --silent --location 'https://api.github.com/repos/graalvm/graalvm-ce-builds/releases?per_page=12&page=1' | jq -r 'map(select(.tag_name | contains("jdk-22"))) | .[0].tag_name | sub("jdk-"; "")')
-sed --regexp-extended --in-place "s/JAVA_VERSION=[^ ]+/JAVA_VERSION=${graal22Version}/" ./jdk21and22-graal/Dockerfile
+sed --regexp-extended --in-place "s/JAVA_VERSION=[^ ]+/JAVA_VERSION=${graal22Version}/" ./jdk-lts-and-current-graal/Dockerfile
 graal22amd64Sha=$(curl --fail --location --silent "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${graal22Version}/graalvm-community-jdk-${graal22Version}_linux-x64_bin.tar.gz" | sha256sum | cut -d' ' -f1)
 graal22aarch64Sha=$(curl --fail --location --silent "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${graal22Version}/graalvm-community-jdk-${graal22Version}_linux-aarch64_bin.tar.gz" | sha256sum | cut -d' ' -f1)
-sed --regexp-extended --in-place "s/GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AMD64_DOWNLOAD_SHA256=${graal22amd64Sha}/" ./jdk21and22-graal/Dockerfile
-sed --regexp-extended --in-place "s/GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal22aarch64Sha}/" ./jdk21and22-graal/Dockerfile
+sed --regexp-extended --in-place "s/GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AMD64_DOWNLOAD_SHA256=${graal22amd64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
+sed --regexp-extended --in-place "s/GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal22aarch64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
 
 echo "Latest Gradle version is ${gradleVersion}"
 echo "Latest Graal 17 version is ${graal17Version}"
