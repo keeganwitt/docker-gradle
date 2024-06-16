@@ -37,6 +37,14 @@ jobs:
           - directory: jdk17-graal
             ltsJavaVersion: 17
             variant: graal
+          - directory: jdk22
+            ltsJavaVersion: 22
+          - directory: jdk22-alpine
+            ltsJavaVersion: 22
+            variant: alpine
+          - directory: jdk22-graal
+            ltsJavaVersion: 22
+            variant: graal
           - directory: jdk17-focal-graal
             ltsJavaVersion: 17
             variant: focal-graal

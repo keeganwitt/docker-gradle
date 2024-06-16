@@ -41,6 +41,12 @@ dir -Recurse -Filter Dockerfile | ForEach-Object {
         (Get-Content -Path $_.FullName) -replace "GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+", "GRAALVM_AMD64_DOWNLOAD_SHA256=${graal21amd64Hash}" | Set-Content $_.FullName
         (Get-Content -Path $_.FullName) -replace "GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+", "GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal21aarch64Hash}" | Set-Content $_.FullName
     }
+    elseif ($((Get-Item $_.FullName).Directory.Name) -eq "jdk22-graal")
+    {
+        (Get-Content -Path $_.FullName) -replace "JAVA_VERSION=[^ ]+", "JAVA_VERSION=${graal22Version}" | Set-Content $_.FullName
+        (Get-Content -Path $_.FullName) -replace "GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+", "GRAALVM_AMD64_DOWNLOAD_SHA256=${graal22amd64Hash}" | Set-Content $_.FullName
+        (Get-Content -Path $_.FullName) -replace "GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+", "GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal22aarch64Hash}" | Set-Content $_.FullName
+    }
     elseif ($((Get-Item $_.FullName).Directory.Name) -eq "jdk-lts-and-current-graal")
     {
         (Get-Content -Path $_.FullName) -replace "JAVA_21_VERSION=[^ ]+", "JAVA_21_VERSION=${graal21Version}" | Set-Content $_.FullName
