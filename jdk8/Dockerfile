@@ -23,7 +23,6 @@ RUN set -o errexit -o nounset \
     && apt-get update \
     && apt-get install --yes --no-install-recommends \
         unzip \
-        wget \
         \
         bzr \
         git \
@@ -44,7 +43,7 @@ ENV GRADLE_VERSION 8.9
 ARG GRADLE_DOWNLOAD_SHA256=d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
-    && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+    && curl --fail --show-error --silent --output gradle.zip --location "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
     \
     && echo "Checking Gradle download hash" \
     && echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum --check - \
