@@ -54,13 +54,13 @@ RUN set -o errexit -o nounset \
     && which svn
 
 ENV JAVA_HOME=/opt/java/graalvm
-ENV JAVA_VERSION=22.0.1
+ENV JAVA_VERSION=22.0.2
 RUN set -o errexit -o nounset \
     && mkdir /opt/java \
     \
     && echo "Downloading GraalVM" \
-    && GRAALVM_AMD64_DOWNLOAD_SHA256=e34ec7e8e8c6a4bb99ab4fa32c3e04d01f2f2bd88920ddda7545fd35a0511f75 \
-    && GRAALVM_AARCH64_DOWNLOAD_SHA256=2a510338cc6b63d2bb6aebe0ce0f8df9b76d9255207456cb1f0c9c820e6428cf \
+    && GRAALVM_AMD64_DOWNLOAD_SHA256=ebac1dd96a5e0fbcd1dd9804fa58815f146390a40aae966f02a8c26d1974364f \
+    && GRAALVM_AARCH64_DOWNLOAD_SHA256=28ca4c815fa68b86141d9dcf1a46c1f58f74dead41de9042de1202337bb014d9 \
     && ARCHITECTURE=$(dpkg --print-architecture) \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_ARCHITECTURE=linux-x64; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_ARCHITECTURE=linux-aarch64; fi \
@@ -87,8 +87,8 @@ RUN set -o errexit -o nounset \
     && javac --version \
     && native-image --version
 
-ENV GRADLE_VERSION 8.9
-ARG GRADLE_DOWNLOAD_SHA256=d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab
+ENV GRADLE_VERSION 8.10
+ARG GRADLE_DOWNLOAD_SHA256=5b9c5eb3f9fc2c94abaea57d90bd78747ca117ddbbf96c859d3741181a12bf2a
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
