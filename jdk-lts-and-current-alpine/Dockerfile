@@ -1,9 +1,9 @@
 FROM eclipse-temurin:21-jdk-alpine
 
-COPY --from=eclipse-temurin:22-jdk-alpine /opt/java/openjdk /opt/java/openjdk22
+COPY --from=eclipse-temurin:23-jdk-alpine /opt/java/openjdk /opt/java/openjdk23
 RUN set -o errexit -o nounset \
     && ln -s /opt/java/openjdk /opt/java/openjdk21
-ENV JAVA_CURRENT_HOME /opt/java/openjdk22
+ENV JAVA_CURRENT_HOME /opt/java/openjdk23
 ENV JAVA_LTS_HOME /opt/java/openjdk21
 
 CMD ["gradle"]
@@ -12,8 +12,8 @@ ENV GRADLE_HOME /opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
-    && addgroup --system --gid 1000 gradle \
-    && adduser --system --ingroup gradle --uid 1000 --shell /bin/ash gradle \
+    && addgroup --system --gid 1001 gradle \
+    && adduser --system --ingroup gradle --uid 1001 --shell /bin/ash gradle \
     && mkdir /home/gradle/.gradle \
     && chown -R gradle:gradle /home/gradle \
     \

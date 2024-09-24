@@ -1,4 +1,4 @@
-FROM eclipse-temurin:22-jdk-alpine
+FROM eclipse-temurin:23-jdk-alpine
 
 CMD ["gradle"]
 
@@ -6,8 +6,8 @@ ENV GRADLE_HOME /opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
-    && addgroup --system --gid 1000 gradle \
-    && adduser --system --ingroup gradle --uid 1000 --shell /bin/ash gradle \
+    && addgroup --system --gid 1001 gradle \
+    && adduser --system --ingroup gradle --uid 1001 --shell /bin/ash gradle \
     && mkdir /home/gradle/.gradle \
     && chown -R gradle:gradle /home/gradle \
     && chmod -R o+rwx /home/gradle \

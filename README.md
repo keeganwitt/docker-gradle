@@ -15,9 +15,9 @@
 * [jdk21, jdk21-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21/Dockerfile)
 * [jdk21-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-alpine/Dockerfile)
 * [jdk21-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-graal/Dockerfile)
-* [jdk22, jdk22-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk22/Dockerfile)
-* [jdk22-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk22-alpine/Dockerfile)
-* [jdk22-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk22-graal/Dockerfile)
+* [jdk23, jdk23-noble](https://github.com/keeganwitt/docker-gradle/blob/master/jdk23/Dockerfile)
+* [jdk23-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk23-alpine/Dockerfile)
+* [jdk23-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk23-graal/Dockerfile)
 * [jdk-lts-and-current](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current/Dockerfile)
 * [jdk-lts-and-current-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current-alpine/Dockerfile)
 * [jdk-lts-and-current-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current-graal/Dockerfile)
@@ -66,7 +66,7 @@ Run this from the directory of the Gradle project you want to build.
 
 `docker run --rm -u gradle -v "%cd%:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
 
-Note the above command runs using uid/gid 1000 (user *gradle*) to avoid running as root.
+Note the above command runs using uid/gid 1001 (user *gradle*) to avoid running as root.
 
 ### Reusing the Gradle cache
 

@@ -6,8 +6,8 @@ ENV GRADLE_HOME /opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
-    && groupadd --system --gid 1000 gradle \
-    && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
+    && groupadd --system --gid 1001 gradle \
+    && useradd --system --gid gradle --uid 1001 --shell /bin/bash --create-home gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
     && chmod -R o+rwx /home/gradle \
@@ -54,13 +54,13 @@ RUN set -o errexit -o nounset \
     && which svn
 
 ENV JAVA_HOME=/opt/java/graalvm
-ENV JAVA_VERSION=22.0.2
+ENV JAVA_VERSION=23.0.0
 RUN set -o errexit -o nounset \
     && mkdir /opt/java \
     \
     && echo "Downloading GraalVM" \
-    && GRAALVM_AMD64_DOWNLOAD_SHA256=ebac1dd96a5e0fbcd1dd9804fa58815f146390a40aae966f02a8c26d1974364f \
-    && GRAALVM_AARCH64_DOWNLOAD_SHA256=28ca4c815fa68b86141d9dcf1a46c1f58f74dead41de9042de1202337bb014d9 \
+    && GRAALVM_AMD64_DOWNLOAD_SHA256=440eb64bf548f37086f97d236a028d0a6ccf5cee9ed9caed2f70ded5a68312a0 \
+    && GRAALVM_AARCH64_DOWNLOAD_SHA256=42ae53bdb4112d86eb3e12fe6d30a65b800a4ff8a658c7c3bc77e0a678078b20 \
     && ARCHITECTURE=$(dpkg --print-architecture) \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_ARCHITECTURE=linux-x64; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_ARCHITECTURE=linux-aarch64; fi \

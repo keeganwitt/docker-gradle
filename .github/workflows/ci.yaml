@@ -37,13 +37,13 @@ jobs:
           - directory: jdk17-graal
             ltsJavaVersion: 17
             variant: graal
-          - directory: jdk22
-            ltsJavaVersion: 22
-          - directory: jdk22-alpine
-            ltsJavaVersion: 22
+          - directory: jdk23
+            ltsJavaVersion: 23
+          - directory: jdk23-alpine
+            ltsJavaVersion: 23
             variant: alpine
-          - directory: jdk22-graal
-            ltsJavaVersion: 22
+          - directory: jdk23-graal
+            ltsJavaVersion: 23
             variant: graal
           - directory: jdk17-focal-graal
             ltsJavaVersion: 17
@@ -58,14 +58,14 @@ jobs:
             variant: graal
           - directory: jdk-lts-and-current
             ltsJavaVersion: 21
-            currentJavaVersion: 22
+            currentJavaVersion: 23
           - directory: jdk-lts-and-current-alpine
             ltsJavaVersion: 21
-            currentJavaVersion: 22
+            currentJavaVersion: 23
             variant: alpine
           - directory: jdk-lts-and-current-graal
             ltsJavaVersion: 21
-            currentJavaVersion: 22
+            currentJavaVersion: 23
             variant: graal
     steps:
       - name: checkout
