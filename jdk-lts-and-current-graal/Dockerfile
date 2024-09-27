@@ -2,7 +2,7 @@ FROM ubuntu:jammy
 
 CMD ["gradle"]
 
-ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
@@ -57,8 +57,8 @@ RUN set -o errexit -o nounset \
     && which svn
 
 ENV JAVA_HOME=/opt/java/graalvm
-ENV JAVA_LTS_HOME /opt/java/graalvm21
-ENV JAVA_CURRENT_HOME /opt/java/graalvm23
+ENV JAVA_LTS_HOME=/opt/java/graalvm21
+ENV JAVA_CURRENT_HOME=/opt/java/graalvm23
 RUN set -o errexit -o nounset \
     && mkdir /opt/java \
     \
@@ -115,7 +115,7 @@ RUN set -o errexit -o nounset \
     && javac --version \
     && native-image --version
 
-ENV GRADLE_VERSION 8.10.2
+ENV GRADLE_VERSION=8.10.2
 ARG GRADLE_DOWNLOAD_SHA256=31c55713e40233a8303827ceb42ca48a47267a0ad4bab9177123121e71524c26
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
