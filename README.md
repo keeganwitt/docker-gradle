@@ -66,7 +66,7 @@ Run this from the directory of the Gradle project you want to build.
 
 `docker run --rm -u gradle -v "%cd%:/home/gradle/project" -w /home/gradle/project gradle:latest gradle <gradle-task>`
 
-Note the above command runs using uid/gid 1001 (user *gradle*) to avoid running as root.
+Note the above command runs using uid/gid 1000 (user *gradle*) to avoid running as root.
 
 ### Reusing the Gradle cache
 
