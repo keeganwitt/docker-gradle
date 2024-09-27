@@ -3,12 +3,12 @@ FROM eclipse-temurin:21-jdk-alpine
 COPY --from=eclipse-temurin:23-jdk-alpine /opt/java/openjdk /opt/java/openjdk23
 RUN set -o errexit -o nounset \
     && ln -s /opt/java/openjdk /opt/java/openjdk21
-ENV JAVA_CURRENT_HOME /opt/java/openjdk23
-ENV JAVA_LTS_HOME /opt/java/openjdk21
+ENV JAVA_CURRENT_HOME=/opt/java/openjdk23
+ENV JAVA_LTS_HOME=/opt/java/openjdk21
 
 CMD ["gradle"]
 
-ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
@@ -43,7 +43,7 @@ RUN set -o errexit -o nounset \
     && which hg \
     && which svn
 
-ENV GRADLE_VERSION 8.10.2
+ENV GRADLE_VERSION=8.10.2
 ARG GRADLE_DOWNLOAD_SHA256=31c55713e40233a8303827ceb42ca48a47267a0ad4bab9177123121e71524c26
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
