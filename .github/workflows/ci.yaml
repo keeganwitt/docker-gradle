@@ -23,6 +23,9 @@ jobs:
           - directory: jdk11-alpine
             ltsJavaVersion: 11
             variant: alpine
+          - directory: jdk11-corretto
+            ltsJavaVersion: 11
+            variant: corretto
           - directory: jdk11-focal
             ltsJavaVersion: 11
             variant: focal
@@ -31,19 +34,14 @@ jobs:
           - directory: jdk17-alpine
             ltsJavaVersion: 17
             variant: alpine
+          - directory: jdk17-corretto
+            ltsJavaVersion: 17
+            variant: corretto
           - directory: jdk17-focal
             ltsJavaVersion: 17
             variant: focal
           - directory: jdk17-graal
             ltsJavaVersion: 17
-            variant: graal
-          - directory: jdk23
-            ltsJavaVersion: 23
-          - directory: jdk23-alpine
-            ltsJavaVersion: 23
-            variant: alpine
-          - directory: jdk23-graal
-            ltsJavaVersion: 23
             variant: graal
           - directory: jdk17-focal-graal
             ltsJavaVersion: 17
@@ -53,8 +51,22 @@ jobs:
           - directory: jdk21-alpine
             ltsJavaVersion: 21
             variant: alpine
+          - directory: jdk21-corretto
+            ltsJavaVersion: 21
+            variant: corretto
           - directory: jdk21-graal
             ltsJavaVersion: 21
+            variant: graal
+          - directory: jdk23
+            ltsJavaVersion: 23
+          - directory: jdk23-alpine
+            ltsJavaVersion: 23
+            variant: alpine
+          - directory: jdk23-corretto
+            ltsJavaVersion: 23
+            variant: corretto
+          - directory: jdk23-graal
+            ltsJavaVersion: 23
             variant: graal
           - directory: jdk-lts-and-current
             ltsJavaVersion: 21
@@ -63,6 +75,10 @@ jobs:
             ltsJavaVersion: 21
             currentJavaVersion: 23
             variant: alpine
+          - directory: jdk-lts-and-current-corretto
+            ltsJavaVersion: 21
+            currentJavaVersion: 23
+            variant: corretto
           - directory: jdk-lts-and-current-graal
             ltsJavaVersion: 21
             currentJavaVersion: 23
