@@ -1,8 +1,8 @@
 FROM amazoncorretto:21-al2023-jdk
 
-COPY --from=amazoncorretto:23-al2023-jdk /usr/lib/jvm/java-23-amazon-corretto.x86_64 /usr/lib/jvm/java-23-amazon-corretto.x86_64
-ENV JAVA_LTS_HOME=/usr/lib/jvm/java-21-amazon-corretto.x86_64
-ENV JAVA_CURRENT_HOME=/usr/lib/jvm/java-23-amazon-corretto.x86_64
+COPY --from=amazoncorretto:23-al2023-jdk /usr/lib/jvm/java-23-amazon-corretto /usr/lib/jvm/java-23-amazon-corretto
+ENV JAVA_LTS_HOME=/usr/lib/jvm/java-21-amazon-corretto
+ENV JAVA_CURRENT_HOME=/usr/lib/jvm/java-23-amazon-corretto
 
 CMD ["gradle"]
 
