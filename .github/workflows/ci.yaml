@@ -99,7 +99,7 @@ jobs:
           ltsJavaVersion: ${{ matrix.versions.ltsJavaVersion }}
           currentJavaVersion: ${{ matrix.versions.currentJavaVersion }}
           variant: ${{ matrix.versions.variant }}
-          expectedGradleVersion: "8.11.1"
+          expectedGradleVersion: "8.12"
         run: |
           toolchainJavaVersion="${currentJavaVersion:-${ltsJavaVersion}}"
           if [[ "${variant:-''}" = "graal" ]]; then
