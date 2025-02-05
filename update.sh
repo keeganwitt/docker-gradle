@@ -2,7 +2,7 @@
 set -o errexit -o nounset -o pipefail
 
 _sed() {
-  if sed --version; then
+  if sed --version > /dev/null 2>&1; then
     # GNU sed
     sed --regexp-extended --in-place "$@"
   else
