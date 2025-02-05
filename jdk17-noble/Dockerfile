@@ -1,10 +1,4 @@
-FROM eclipse-temurin:21-jdk-noble
-
-COPY --from=eclipse-temurin:23-jdk-noble /opt/java/openjdk /opt/java/openjdk23
-RUN set -o errexit -o nounset \
-    && ln --symbolic /opt/java/openjdk /opt/java/openjdk21
-ENV JAVA_LTS_HOME=/opt/java/openjdk21
-ENV JAVA_CURRENT_HOME=/opt/java/openjdk23
+FROM eclipse-temurin:17-jdk-noble
 
 CMD ["gradle"]
 
@@ -21,12 +15,7 @@ RUN set -o errexit -o nounset \
     && chmod --recursive o+rwx /home/gradle \
     \
     && echo "Symlinking root Gradle cache to gradle Gradle cache" \
-    && ln --symbolic /home/gradle/.gradle /root/.gradle \
-    \
-    && echo "Ensuring Gradle detects installed JDKs" \
-    && echo "org.gradle.java.installations.auto-detect=false" > /home/gradle/.gradle/gradle.properties \
-    && echo "org.gradle.java.installations.auto-download=false" >> /home/gradle/.gradle/gradle.properties \
-    && echo "org.gradle.java.installations.fromEnv=JAVA_LTS_HOME,JAVA_CURRENT_HOME" >> /home/gradle/.gradle/gradle.properties
+    && ln --symbolic /home/gradle/.gradle /root/.gradle
 
 VOLUME /home/gradle/.gradle
 
@@ -59,14 +48,19 @@ RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
     \
-    && echo "Checking download hash" \
+    && echo "Checking Gradle download hash" \
     && echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum --check - \
     \
     && echo "Installing Gradle" \
     && unzip gradle.zip \
     && rm gradle.zip \
     && mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
-    && ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
-    \
+    && ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
+
+USER gradle
+
+RUN set -o errexit -o nounset \
     && echo "Testing Gradle installation" \
     && gradle --version
+
+USER root
