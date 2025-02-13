@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [jdk11, jdk11-alpine, jdk11-focal, jdk17, jdk17-alpine, jdk17-focal, jdk20, jdk20-alpine, jdk17-graal, jdk17-focal-graal, jdk20-graal]
+        version: [jdk11, jdk11-alpine, jdk11-focal, jdk17, jdk17-alpine, jdk17-focal]
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -34,9 +34,5 @@ jobs:
           version: ${{ matrix.version }}
           expectedGradleVersion: "6.9.4"
         run: |
-          if [[ "${version}" =~ "graal" ]]; then
-            cd test-graal
-          else
-            cd test
-          fi
+          cd test
           ./run.sh "gradle:${version}" "${expectedGradleVersion}"
