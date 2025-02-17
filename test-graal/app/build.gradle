@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id 'org.graalvm.buildtools.native' version '0.9.24'
+    id 'org.graalvm.buildtools.native' version '0.10.1'
 }
 
 repositories {
@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 }
 
 application {
@@ -20,8 +20,20 @@ tasks.named('test') {
 }
 
 graalvmNative {
-    binaries.all {
-        resources.autodetect()
+    binaries {
+        all {
+            resources.autodetect()
+        }
+        main {
+            javaLauncher = javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(00)
+            }
+        }
     }
-    toolchainDetection = false
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(00)
+    }
 }

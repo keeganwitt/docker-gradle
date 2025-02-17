@@ -1,13 +1,15 @@
-FROM ubuntu:focal
+FROM ubuntu:noble
 
 CMD ["gradle"]
 
 ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
-    && echo "Adding gradle user and group" \
-    && groupadd --system --gid 1000 gradle \
-    && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
+    && echo "Renaming ubuntu user and group to gradle" \
+    && groupmod --new-name gradle ubuntu \
+    && mkdir /home/gradle \
+    && usermod --login gradle --home /home/gradle --groups gradle ubuntu \
+    && chown gradle /home/gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
     && chmod --recursive o+rwx /home/gradle \
@@ -88,8 +90,8 @@ RUN set -o errexit -o nounset \
     && gu --version \
     && native-image --version
 
-ENV GRADLE_VERSION 7.6.4
-ARG GRADLE_DOWNLOAD_SHA256=bed1da33cca0f557ab13691c77f38bb67388119e4794d113e051039b80af9bb1
+ENV GRADLE_VERSION=8.12.1
+ARG GRADLE_DOWNLOAD_SHA256=8d97a97984f6cbd2b85fe4c60a743440a347544bf18818048e611f5288d46c94
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \

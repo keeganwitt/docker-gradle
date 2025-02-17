@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-jdk-focal
+FROM eclipse-temurin:21-jdk-alpine
 
 CMD ["gradle"]
 
@@ -6,54 +6,47 @@ ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
-    && groupadd --system --gid 1000 gradle \
-    && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
+    && addgroup --system --gid 1000 gradle \
+    && adduser --system --ingroup gradle --uid 1000 --shell /bin/ash gradle \
     && mkdir /home/gradle/.gradle \
-    && chown --recursive gradle:gradle /home/gradle \
-    && chmod --recursive o+rwx /home/gradle \
+    && chown -R gradle:gradle /home/gradle \
+    && chmod -R o+rwx /home/gradle \
     \
     && echo "Symlinking root Gradle cache to gradle Gradle cache" \
-    && ln --symbolic /home/gradle/.gradle /root/.gradle
+    && ln -s /home/gradle/.gradle /root/.gradle
 
 VOLUME /home/gradle/.gradle
 
 WORKDIR /home/gradle
 
 RUN set -o errexit -o nounset \
-    && apt-get update \
-    && apt-get install --yes --no-install-recommends \
-        unzip \
-        wget \
-        \
-        bzr \
-        git \
-        git-lfs \
-        mercurial \
-        openssh-client \
-        subversion \
-    && rm --recursive --force /var/lib/apt/lists/* \
+    && echo "Installing VCSes" \
+    && apk add --no-cache \
+      git \
+      git-lfs \
+      mercurial \
+      subversion \
     \
     && echo "Testing VCSes" \
-    && which bzr \
     && which git \
     && which git-lfs \
     && which hg \
     && which svn
 
-ENV GRADLE_VERSION 7.6.4
-ARG GRADLE_DOWNLOAD_SHA256=bed1da33cca0f557ab13691c77f38bb67388119e4794d113e051039b80af9bb1
+ENV GRADLE_VERSION=8.12.1
+ARG GRADLE_DOWNLOAD_SHA256=8d97a97984f6cbd2b85fe4c60a743440a347544bf18818048e611f5288d46c94
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
     \
     && echo "Checking Gradle download hash" \
-    && echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum --check - \
+    && echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
     \
     && echo "Installing Gradle" \
     && unzip gradle.zip \
     && rm gradle.zip \
     && mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
-    && ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
+    && ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
 
 USER gradle
 
