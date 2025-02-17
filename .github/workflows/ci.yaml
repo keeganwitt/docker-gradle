@@ -17,26 +17,94 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [jdk11, jdk11-alpine, jdk11-focal, jdk17, jdk17-alpine, jdk17-focal, jdk20, jdk20-alpine, jdk17-graal, jdk17-focal-graal, jdk20-graal]
+        versions:
+          - directory: jdk11-jammy
+            ltsJavaVersion: 11
+          - directory: jdk11-focal
+            ltsJavaVersion: 11
+          - directory: jdk11-alpine
+            ltsJavaVersion: 11
+          - directory: jdk11-corretto
+            ltsJavaVersion: 11
+          - directory: jdk17-noble
+            ltsJavaVersion: 17
+          - directory: jdk17-jammy
+            ltsJavaVersion: 17
+          - directory: jdk17-alpine
+            ltsJavaVersion: 17
+          - directory: jdk17-corretto
+            ltsJavaVersion: 17
+          - directory: jdk17-focal
+            ltsJavaVersion: 17
+          - directory: jdk17-noble-graal
+            ltsJavaVersion: 17
+            variant: graal
+          - directory: jdk17-jammy-graal
+            ltsJavaVersion: 17
+            variant: graal
+          - directory: jdk17-focal-graal
+            ltsJavaVersion: 17
+            variant: graal
+          - directory: jdk21-noble
+            ltsJavaVersion: 21
+          - directory: jdk21-jammy
+            ltsJavaVersion: 21
+          - directory: jdk21-alpine
+            ltsJavaVersion: 21
+          - directory: jdk21-corretto
+            ltsJavaVersion: 21
+          - directory: jdk21-noble-graal
+            ltsJavaVersion: 21
+            variant: graal
+          - directory: jdk21-jammy-graal
+            ltsJavaVersion: 21
+            variant: graal
+          - directory: jdk23-noble
+            ltsJavaVersion: 23
+          - directory: jdk23-alpine
+            ltsJavaVersion: 23
+          - directory: jdk23-corretto
+            ltsJavaVersion: 23
+          - directory: jdk23-noble-graal
+            ltsJavaVersion: 23
+            variant: graal
+          - directory: jdk-lts-and-current
+            ltsJavaVersion: 21
+            currentJavaVersion: 23
+          - directory: jdk-lts-and-current-alpine
+            ltsJavaVersion: 21
+            currentJavaVersion: 23
+          - directory: jdk-lts-and-current-corretto
+            ltsJavaVersion: 21
+            currentJavaVersion: 23
+          - directory: jdk-lts-and-current-graal
+            ltsJavaVersion: 21
+            currentJavaVersion: 23
+            variant: graal
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: build
         env:
-          version: ${{ matrix.version }}
+          directory: ${{ matrix.versions.directory }}
         run: |
-          cd "${version}"
-          baseImage=$(grep "FROM " Dockerfile | cut -d' ' -f2)
-          docker pull "${baseImage}"
-          docker build --tag "gradle:${version}" .
+          cd "${directory}"
+          grep "FROM " Dockerfile | cut -d' ' -f2 | xargs -I{} docker pull {}
+          docker build --tag "gradle:${directory}" .
       - name: test
         env:
-          version: ${{ matrix.version }}
+          directory: ${{ matrix.versions.directory }}
+          ltsJavaVersion: ${{ matrix.versions.ltsJavaVersion }}
+          currentJavaVersion: ${{ matrix.versions.currentJavaVersion }}
+          variant: ${{ matrix.versions.variant }}
           expectedGradleVersion: "6.9.4"
         run: |
-          if [[ "${version}" =~ "graal" ]]; then
-            cd test-graal
+          toolchainJavaVersion="${currentJavaVersion:-${ltsJavaVersion}}"
+          if [[ "${variant:-''}" = "graal" ]]; then
+              cd test-graal
+              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" app/build.gradle
           else
-            cd test
+              cd test
+              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" lib/build.gradle.kts
           fi
-          ./run.sh "gradle:${version}" "${expectedGradleVersion}"
+          ./run.sh "gradle:${directory}" "${expectedGradleVersion}"

@@ -1,8 +1,30 @@
-FROM eclipse-temurin:17-jdk-jammy
+FROM amazoncorretto:17-al2023-jdk
 
 CMD ["gradle"]
 
-ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_HOME=/opt/gradle
+
+RUN set -o errexit -o nounset \
+    && dnf install -y \
+        shadow-utils \
+        unzip \
+        wget \
+        which \
+        \
+        findutils \
+        \
+        git \
+        git-lfs \
+        mercurial \
+        subversion \
+    && dnf clean all \
+    && rm -rf /var/cache/yum \
+    \
+    && echo "Testing VCSes" \
+    && which git \
+    && which git-lfs \
+    && which hg \
+    && which svn
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
@@ -18,29 +40,8 @@ VOLUME /home/gradle/.gradle
 
 WORKDIR /home/gradle
 
-RUN set -o errexit -o nounset \
-    && apt-get update \
-    && apt-get install --yes --no-install-recommends \
-        unzip \
-        wget \
-        \
-        bzr \
-        git \
-        git-lfs \
-        mercurial \
-        openssh-client \
-        subversion \
-    && rm --recursive --force /var/lib/apt/lists/* \
-    \
-    && echo "Testing VCSes" \
-    && which bzr \
-    && which git \
-    && which git-lfs \
-    && which hg \
-    && which svn
-
-ENV GRADLE_VERSION 6.9.4
-ARG GRADLE_DOWNLOAD_SHA256=3e240228538de9f18772a574e99a0ba959e83d6ef351014381acd9631781389a
+ENV GRADLE_VERSION=8.12.1
+ARG GRADLE_DOWNLOAD_SHA256=8d97a97984f6cbd2b85fe4c60a743440a347544bf18818048e611f5288d46c94
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
