@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jdk-focal
 
 CMD ["gradle"]
 
-ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \

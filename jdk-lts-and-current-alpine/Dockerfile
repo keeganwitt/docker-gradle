@@ -1,8 +1,14 @@
-FROM eclipse-temurin:20-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
+
+COPY --from=eclipse-temurin:23-jdk-alpine /opt/java/openjdk /opt/java/openjdk23
+RUN set -o errexit -o nounset \
+    && ln -s /opt/java/openjdk /opt/java/openjdk21
+ENV JAVA_CURRENT_HOME=/opt/java/openjdk23
+ENV JAVA_LTS_HOME=/opt/java/openjdk21
 
 CMD ["gradle"]
 
-ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
@@ -10,10 +16,14 @@ RUN set -o errexit -o nounset \
     && adduser --system --ingroup gradle --uid 1000 --shell /bin/ash gradle \
     && mkdir /home/gradle/.gradle \
     && chown -R gradle:gradle /home/gradle \
-    && chmod -R o+rwx /home/gradle \
     \
     && echo "Symlinking root Gradle cache to gradle Gradle cache" \
-    && ln -s /home/gradle/.gradle /root/.gradle
+    && ln -s /home/gradle/.gradle /root/.gradle \
+   \
+   && echo "Ensuring Gradle detects installed JDKs" \
+   && echo "org.gradle.java.installations.auto-detect=false" > /home/gradle/.gradle/gradle.properties \
+   && echo "org.gradle.java.installations.auto-download=false" >> /home/gradle/.gradle/gradle.properties \
+   && echo "org.gradle.java.installations.fromEnv=JAVA_LTS_HOME,JAVA_CURRENT_HOME" >> /home/gradle/.gradle/gradle.properties
 
 VOLUME /home/gradle/.gradle
 
@@ -33,7 +43,7 @@ RUN set -o errexit -o nounset \
     && which hg \
     && which svn
 
-ENV GRADLE_VERSION 6.9.4
+ENV GRADLE_VERSION=6.9.4
 ARG GRADLE_DOWNLOAD_SHA256=3e240228538de9f18772a574e99a0ba959e83d6ef351014381acd9631781389a
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \

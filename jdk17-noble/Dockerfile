@@ -1,13 +1,15 @@
-FROM eclipse-temurin:11-jdk-jammy
+FROM eclipse-temurin:17-jdk-noble
 
 CMD ["gradle"]
 
-ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
-    && echo "Adding gradle user and group" \
-    && groupadd --system --gid 1000 gradle \
-    && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
+    && echo "Renaming ubuntu user and group to gradle" \
+    && groupmod --new-name gradle ubuntu \
+    && mkdir /home/gradle \
+    && usermod --login gradle --home /home/gradle --groups gradle ubuntu \
+    && chown gradle /home/gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
     && chmod --recursive o+rwx /home/gradle \
@@ -40,7 +42,7 @@ RUN set -o errexit -o nounset \
     && which hg \
     && which svn
 
-ENV GRADLE_VERSION 6.9.4
+ENV GRADLE_VERSION=6.9.4
 ARG GRADLE_DOWNLOAD_SHA256=3e240228538de9f18772a574e99a0ba959e83d6ef351014381acd9631781389a
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
