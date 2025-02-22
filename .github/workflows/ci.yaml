@@ -24,45 +24,53 @@ jobs:
             ltsJavaVersion: 8
           - directory: jdk8-corretto
             ltsJavaVersion: 8
-          - directory: jdk11-jammy
-            ltsJavaVersion: 11
+          - directory: jdk8-ubi9
+            ltsJavaVersion: 8
           - directory: jdk11-focal
+            ltsJavaVersion: 11
+          - directory: jdk11-jammy
             ltsJavaVersion: 11
           - directory: jdk11-alpine
             ltsJavaVersion: 11
           - directory: jdk11-corretto
             ltsJavaVersion: 11
-          - directory: jdk17-noble
+          - directory: jdk11-ubi9
+            ltsJavaVersion: 11
+          - directory: jdk17-focal
             ltsJavaVersion: 17
           - directory: jdk17-jammy
+            ltsJavaVersion: 17
+          - directory: jdk17-noble
             ltsJavaVersion: 17
           - directory: jdk17-alpine
             ltsJavaVersion: 17
           - directory: jdk17-corretto
             ltsJavaVersion: 17
-          - directory: jdk17-focal
+          - directory: jdk17-ubi9
             ltsJavaVersion: 17
-          - directory: jdk17-noble-graal
+          - directory: jdk17-focal-graal
             ltsJavaVersion: 17
             variant: graal
           - directory: jdk17-jammy-graal
             ltsJavaVersion: 17
             variant: graal
-          - directory: jdk17-focal-graal
+          - directory: jdk17-noble-graal
             ltsJavaVersion: 17
             variant: graal
-          - directory: jdk21-noble
-            ltsJavaVersion: 21
           - directory: jdk21-jammy
+            ltsJavaVersion: 21
+          - directory: jdk21-noble
             ltsJavaVersion: 21
           - directory: jdk21-alpine
             ltsJavaVersion: 21
           - directory: jdk21-corretto
             ltsJavaVersion: 21
-          - directory: jdk21-noble-graal
+          - directory: jdk21-ubi9
+            ltsJavaVersion: 21
+          - directory: jdk21-jammy-graal
             ltsJavaVersion: 21
             variant: graal
-          - directory: jdk21-jammy-graal
+          - directory: jdk21-noble-graal
             ltsJavaVersion: 21
             variant: graal
           - directory: jdk23-noble
@@ -70,6 +78,8 @@ jobs:
           - directory: jdk23-alpine
             ltsJavaVersion: 23
           - directory: jdk23-corretto
+            ltsJavaVersion: 23
+          - directory: jdk23-ubi9
             ltsJavaVersion: 23
           - directory: jdk23-noble-graal
             ltsJavaVersion: 23
