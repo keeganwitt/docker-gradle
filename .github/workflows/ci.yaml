@@ -24,23 +24,23 @@ jobs:
             ltsJavaVersion: 8
           - directory: jdk8-corretto
             ltsJavaVersion: 8
-          - directory: jdk11-jammy
-            ltsJavaVersion: 11
           - directory: jdk11-focal
+            ltsJavaVersion: 11
+          - directory: jdk11-jammy
             ltsJavaVersion: 11
           - directory: jdk11-alpine
             ltsJavaVersion: 11
           - directory: jdk11-corretto
             ltsJavaVersion: 11
-          - directory: jdk17-noble
+          - directory: jdk17-focal
             ltsJavaVersion: 17
           - directory: jdk17-jammy
+            ltsJavaVersion: 17
+          - directory: jdk17-noble
             ltsJavaVersion: 17
           - directory: jdk17-alpine
             ltsJavaVersion: 17
           - directory: jdk17-corretto
-            ltsJavaVersion: 17
-          - directory: jdk17-focal
             ltsJavaVersion: 17
           - directory: jdk17-noble-graal
             ltsJavaVersion: 17
@@ -51,9 +51,9 @@ jobs:
           - directory: jdk17-focal-graal
             ltsJavaVersion: 17
             variant: graal
-          - directory: jdk21-noble
-            ltsJavaVersion: 21
           - directory: jdk21-jammy
+            ltsJavaVersion: 21
+          - directory: jdk21-noble
             ltsJavaVersion: 21
           - directory: jdk21-alpine
             ltsJavaVersion: 21
