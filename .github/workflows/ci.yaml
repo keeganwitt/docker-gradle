@@ -18,6 +18,12 @@ jobs:
     strategy:
       matrix:
         versions:
+          - directory: jdk8-focal
+            ltsJavaVersion: 8
+          - directory: jdk8-jammy
+            ltsJavaVersion: 8
+          - directory: jdk8-corretto
+            ltsJavaVersion: 8
           - directory: jdk11-jammy
             ltsJavaVersion: 11
           - directory: jdk11-focal
