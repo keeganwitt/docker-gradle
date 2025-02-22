@@ -1,4 +1,4 @@
-FROM eclipse-temurin:23-jdk-ubi9-minimal
+FROM eclipse-temurin:8-jdk-ubi9-minimal
 
 CMD ["gradle"]
 
