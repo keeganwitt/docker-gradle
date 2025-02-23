@@ -55,7 +55,7 @@ for branch in "${branches[@]}"; do
 				# sort the list:
 				# - LTS JDK versions in descending order
 				# - non-LTS JDK versions in descending order
-				# - plain (temurin) variants above alpine above corretto above graal
+				# - plain (temurin) variants above alpine above corretto above ubi above graal
 				# - Ubuntu versions in descending release order
 				# (presorting the list makes tag calculation easier later because we can simply generate a list of tags each combination *could* have and let the first one to try get it, being careful not to reuse any)
 				(
@@ -83,7 +83,8 @@ for branch in "${branches[@]}"; do
 					(
 						if contains("alpine") then 1
 						elif contains("corretto") then 2
-						elif contains("graal") then 3
+						elif contains("ubi") then 3
+						elif contains("graal") then 4
 						else 0 end
 					),
 					# ubuntu versions in descending order
@@ -140,6 +141,7 @@ for branch in "${branches[@]}"; do
 		case "$dir" in
 			*-alpine)   variant='alpine' ;;
 			*-corretto) variant='corretto' ;;
+			*-ubi*)     variant='ubi' ;;
 			*-graal)    variant='graal' ;;
 			*)          variant='' ;;
 		esac
@@ -176,6 +178,13 @@ for branch in "${branches[@]}"; do
 					'corretto'
 					"${versions[@]/%/-$jdk-corretto-$suite}" # "X.Y.Z-corretto-al2023"
 					"corretto-$suite" # "corretto-al2023"
+				)
+				;;
+			ubi)
+				tags+=(
+					'ubi'
+					"${versions[@]/%/-$jdk-ubi-$suite}" # "X.Y.Z-ubi9"
+					"ubi-$suite" # "ubi9"
 				)
 				;;
 			graal)
