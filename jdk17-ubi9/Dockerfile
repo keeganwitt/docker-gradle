@@ -6,8 +6,8 @@ ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
-    && groupadd --system --gid 999 gradle \
-    && useradd --system --gid gradle --uid 999 --shell /bin/bash --create-home gradle \
+    && groupadd --system --gid 101 gradle \
+    && useradd --system --gid gradle --uid 101 --shell /bin/bash --create-home gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
     && chmod --recursive o+rwx /home/gradle \
