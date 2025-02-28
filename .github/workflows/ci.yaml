@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - master
+      - 6
+      - 7
   pull_request:
     branches:
       - master
+      - 6
+      - 7
 
 defaults:
   run:
