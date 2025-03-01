@@ -105,6 +105,11 @@ for branch in "${branches[@]}"; do
 
 	firstVersion=
 	for dir in "${directories[@]}"; do
+		if [ ! -d "$dir" ]; then
+			# skip directory that doesn't exist in this branch
+			continue
+		fi
+
 		dockerfile="$(git show "$commit:$dir/Dockerfile")"
 
 		# extract "FROM" and "GRADLE_VERSION" from Dockerfile
