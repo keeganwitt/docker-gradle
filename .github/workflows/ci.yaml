@@ -32,6 +32,8 @@ jobs:
             ltsJavaVersion: 11
           - directory: jdk11-focal
             ltsJavaVersion: 11
+          - directory: jdk11-jammy
+            ltsJavaVersion: 11
           - directory: jdk11-alpine
             ltsJavaVersion: 11
           - directory: jdk11-corretto
