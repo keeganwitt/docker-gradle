@@ -118,6 +118,10 @@ for branch in "${branches[@]}"; do
 		# extract "FROM" and "GRADLE_VERSION" from Dockerfile
 		from="$(awk <<<"$dockerfile" 'toupper($1) == "FROM" { print $2; exit }')"
 		version="$(awk <<<"$dockerfile" -F '[=[:space:]]+' 'toupper($1) == "ENV" && $2 == "GRADLE_VERSION" { print $3; exit }')"
+		# add a patch version of 0 if missing
+		if [[ "$version" =~ ^[0-9]+\.[0-9]+$ ]]; then
+			version="${version}.0"
+		fi
 
 		# make sure the version we scraped matches what we expect to
 		case "$version" in
