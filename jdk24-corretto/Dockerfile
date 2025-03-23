@@ -1,13 +1,35 @@
-FROM eclipse-temurin:23-jdk-ubi9-minimal
+FROM amazoncorretto:24-al2023-jdk
 
 CMD ["gradle"]
 
 ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
+    && dnf install -y \
+        shadow-utils \
+        unzip \
+        wget \
+        which \
+        \
+        findutils \
+        \
+        git \
+        git-lfs \
+        mercurial \
+        subversion \
+    && dnf clean all \
+    && rm -rf /var/cache/yum \
+    \
+    && echo "Testing VCSes" \
+    && which git \
+    && which git-lfs \
+    && which hg \
+    && which svn
+
+RUN set -o errexit -o nounset \
     && echo "Adding gradle user and group" \
-    && groupadd --system --gid 101 gradle \
-    && useradd --system --gid gradle --uid 101 --shell /bin/bash --create-home gradle \
+    && groupadd --system --gid 1000 gradle \
+    && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
     && chmod --recursive o+rwx /home/gradle \
@@ -18,27 +40,6 @@ RUN set -o errexit -o nounset \
 VOLUME /home/gradle/.gradle
 
 WORKDIR /home/gradle
-
-RUN set -o errexit -o nounset \
-    && microdnf install -y \
-        # Gradle dependencies
-        findutils \
-        \
-        # Dockerfile dependencies
-        unzip \
-        wget \
-        which \
-        \
-        # VCS dependencies
-        git \
-        git-lfs \
-        subversion \
-    && microdnf clean all \
-    \
-    && echo "Testing VCSes" \
-    && which git \
-    && which git-lfs \
-    && which svn
 
 ENV GRADLE_VERSION=8.13
 ARG GRADLE_DOWNLOAD_SHA256=20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78

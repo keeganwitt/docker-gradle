@@ -46,29 +46,29 @@ _sed "s/JAVA_VERSION=[^ ]+/JAVA_VERSION=${graal21Version}/" ./jdk21-jammy-graal/
 _sed "s/GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AMD64_DOWNLOAD_SHA256=${graal21amd64Sha}/" ./jdk21-jammy-graal/Dockerfile
 _sed "s/GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal21aarch64Sha}/" ./jdk21-jammy-graal/Dockerfile
 
-graal23Version=$( curl --silent --location 'https://api.github.com/repos/graalvm/graalvm-ce-builds/releases?per_page=12&page=1' | jq -r 'map(select(.tag_name | contains("jdk-23"))) | .[0].tag_name | sub("jdk-"; "")')
-graal23amd64Sha=$(curl --fail --location --silent "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${graal23Version}/graalvm-community-jdk-${graal23Version}_linux-x64_bin.tar.gz" | sha256sum | cut -d' ' -f1)
-graal23aarch64Sha=$(curl --fail --location --silent "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${graal23Version}/graalvm-community-jdk-${graal23Version}_linux-aarch64_bin.tar.gz" | sha256sum | cut -d' ' -f1)
+graal24Version=$( curl --silent --location 'https://api.github.com/repos/graalvm/graalvm-ce-builds/releases?per_page=12&page=1' | jq -r 'map(select(.tag_name | contains("jdk-24"))) | .[0].tag_name | sub("jdk-"; "")')
+graal24amd64Sha=$(curl --fail --location --silent "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${graal24Version}/graalvm-community-jdk-${graal24Version}_linux-x64_bin.tar.gz" | sha256sum | cut -d' ' -f1)
+graal24aarch64Sha=$(curl --fail --location --silent "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${graal24Version}/graalvm-community-jdk-${graal24Version}_linux-aarch64_bin.tar.gz" | sha256sum | cut -d' ' -f1)
 
-_sed "s/JAVA_VERSION=[^ ]+/JAVA_VERSION=${graal23Version}/" ./jdk23-noble-graal/Dockerfile
-_sed "s/GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AMD64_DOWNLOAD_SHA256=${graal23amd64Sha}/" ./jdk23-noble-graal/Dockerfile
-_sed "s/GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal23aarch64Sha}/" ./jdk23-noble-graal/Dockerfile
+_sed "s/JAVA_VERSION=[^ ]+/JAVA_VERSION=${graal24Version}/" ./jdk24-noble-graal/Dockerfile
+_sed "s/GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AMD64_DOWNLOAD_SHA256=${graal24amd64Sha}/" ./jdk24-noble-graal/Dockerfile
+_sed "s/GRAALVM_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_AARCH64_DOWNLOAD_SHA256=${graal24aarch64Sha}/" ./jdk24-noble-graal/Dockerfile
 
 _sed "s/JAVA_21_VERSION=[^ ]+/JAVA_21_VERSION=${graal21Version}/" ./jdk-lts-and-current-graal/Dockerfile
 _sed "s/GRAALVM_21_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_21_AMD64_DOWNLOAD_SHA256=${graal21amd64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
 _sed "s/GRAALVM_21_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_21_AARCH64_DOWNLOAD_SHA256=${graal21aarch64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
-_sed "s/JAVA_23_VERSION=[^ ]+/JAVA_23_VERSION=${graal23Version}/" ./jdk-lts-and-current-graal/Dockerfile
-_sed "s/GRAALVM_23_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_23_AMD64_DOWNLOAD_SHA256=${graal23amd64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
-_sed "s/GRAALVM_23_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_23_AARCH64_DOWNLOAD_SHA256=${graal23aarch64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
+_sed "s/JAVA_24_VERSION=[^ ]+/JAVA_24_VERSION=${graal24Version}/" ./jdk-lts-and-current-graal/Dockerfile
+_sed "s/GRAALVM_24_AMD64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_24_AMD64_DOWNLOAD_SHA256=${graal24amd64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
+_sed "s/GRAALVM_24_AARCH64_DOWNLOAD_SHA256=[^ ]+/GRAALVM_24_AARCH64_DOWNLOAD_SHA256=${graal24aarch64Sha}/" ./jdk-lts-and-current-graal/Dockerfile
 
 echo "Latest Gradle version is ${gradleVersion}"
 echo "Latest Graal 17 version is ${graal17Version}"
 echo "Latest Graal 21 version is ${graal21Version}"
-echo "Latest Graal 23 version is ${graal23Version}"
+echo "Latest Graal 24 version is ${graal24Version}"
 
 echo "Graal 17 AMD64 hash is ${graal17amd64Sha}"
 echo "Graal 17 AARCH64 hash is ${graal17aarch64Sha}"
 echo "Graal 21 AMD64 hash is ${graal21amd64Sha}"
 echo "Graal 21 AARCH64 hash is ${graal21aarch64Sha}"
-echo "Graal 23 AMD64 hash is ${graal23amd64Sha}"
-echo "Graal 23 AARCH64 hash is ${graal23aarch64Sha}"
+echo "Graal 24 AMD64 hash is ${graal24amd64Sha}"
+echo "Graal 24 AARCH64 hash is ${graal24aarch64Sha}"
