@@ -58,4 +58,4 @@ dir -Recurse -Filter Dockerfile | ForEach-Object {
     }
 }
 
-(Get-Content -Path .github/workflows/ci.yaml) -replace "expectedGradleVersion: .+", "expectedGradleVersion: `"${gradleVersion}`"" | Set-Content .github/workflows/ci.yaml
+(Get-Content -Path .github/workflows/ci.yaml) -replace "expectedGradleVersion: .+", "expectedGradleVersion: '${gradleVersion}'" | Set-Content .github/workflows/ci.yaml
