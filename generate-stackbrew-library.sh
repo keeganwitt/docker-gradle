@@ -106,7 +106,7 @@ for branch in "${branches[@]}"; do
 
 	firstVersion=
 	for dir in "${directories[@]}"; do
-	  # shellcheck disable=SC2001
+		# shellcheck disable=SC2001
 		dir="$(echo "$dir" | sed -e 's/[[:space:]]*$//')"
 		if [ ! -d "$dir" ]; then
 			# skip directory that doesn't exist in this branch

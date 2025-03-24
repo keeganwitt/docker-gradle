@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - master
-      - 6
-      - 7
+      - '6'
+      - '7'
   pull_request:
     branches:
       - master
-      - 6
-      - 7
+      - '6'
+      - '7'
 
 defaults:
   run:
@@ -21,110 +21,63 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        versions:
-          - directory: jdk8-focal
-            ltsJavaVersion: 8
-          - directory: jdk8-jammy
-            ltsJavaVersion: 8
-          - directory: jdk8-corretto
-            ltsJavaVersion: 8
-          - directory: jdk8-ubi9
-            ltsJavaVersion: 8
-          - directory: jdk11-focal
-            ltsJavaVersion: 11
-          - directory: jdk11-jammy
-            ltsJavaVersion: 11
-          - directory: jdk11-alpine
-            ltsJavaVersion: 11
-          - directory: jdk11-corretto
-            ltsJavaVersion: 11
-          - directory: jdk11-ubi9
-            ltsJavaVersion: 11
-          - directory: jdk17-focal
-            ltsJavaVersion: 17
-          - directory: jdk17-jammy
-            ltsJavaVersion: 17
-          - directory: jdk17-noble
-            ltsJavaVersion: 17
-          - directory: jdk17-alpine
-            ltsJavaVersion: 17
-          - directory: jdk17-corretto
-            ltsJavaVersion: 17
-          - directory: jdk17-ubi9
-            ltsJavaVersion: 17
-          - directory: jdk17-focal-graal
-            ltsJavaVersion: 17
-            variant: graal
-          - directory: jdk17-jammy-graal
-            ltsJavaVersion: 17
-            variant: graal
-          - directory: jdk17-noble-graal
-            ltsJavaVersion: 17
-            variant: graal
-          - directory: jdk21-jammy
-            ltsJavaVersion: 21
-          - directory: jdk21-noble
-            ltsJavaVersion: 21
-          - directory: jdk21-alpine
-            ltsJavaVersion: 21
-          - directory: jdk21-corretto
-            ltsJavaVersion: 21
-          - directory: jdk21-ubi9
-            ltsJavaVersion: 21
-          - directory: jdk21-jammy-graal
-            ltsJavaVersion: 21
-            variant: graal
-          - directory: jdk21-noble-graal
-            ltsJavaVersion: 21
-            variant: graal
-          - directory: jdk23-noble
-            ltsJavaVersion: 23
-          - directory: jdk23-alpine
-            ltsJavaVersion: 23
-          - directory: jdk23-corretto
-            ltsJavaVersion: 23
-          - directory: jdk23-ubi9
-            ltsJavaVersion: 23
-          - directory: jdk23-noble-graal
-            ltsJavaVersion: 23
-            variant: graal
-          - directory: jdk-lts-and-current
-            ltsJavaVersion: 21
-            currentJavaVersion: 23
-          - directory: jdk-lts-and-current-alpine
-            ltsJavaVersion: 21
-            currentJavaVersion: 23
-          - directory: jdk-lts-and-current-corretto
-            ltsJavaVersion: 21
-            currentJavaVersion: 23
-          - directory: jdk-lts-and-current-graal
-            ltsJavaVersion: 21
-            currentJavaVersion: 23
-            variant: graal
+        directory:
+          - jdk8-focal
+          - jdk8-jammy
+          - jdk8-corretto
+          - jdk8-ubi9
+          - jdk11-focal
+          - jdk11-jammy
+          - jdk11-alpine
+          - jdk11-corretto
+          - jdk11-ubi9
+          - jdk17-focal
+          - jdk17-jammy
+          - jdk17-noble
+          - jdk17-alpine
+          - jdk17-corretto
+          - jdk17-ubi9
+          - jdk17-focal-graal
+          - jdk17-jammy-graal
+          - jdk17-noble-graal
+          - jdk21-jammy
+          - jdk21-noble
+          - jdk21-alpine
+          - jdk21-corretto
+          - jdk21-ubi9
+          - jdk21-jammy-graal
+          - jdk21-noble-graal
+          - jdk23-noble
+          - jdk23-alpine
+          - jdk23-corretto
+          - jdk23-ubi9
+          - jdk23-noble-graal
+          - jdk-lts-and-current
+          - jdk-lts-and-current-alpine
+          - jdk-lts-and-current-corretto
+          - jdk-lts-and-current-graal
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: build
-        env:
-          directory: ${{ matrix.versions.directory }}
         run: |
-          cd "${directory}"
+          cd "${{ matrix.directory }}"
           grep "FROM " Dockerfile | cut -d' ' -f2 | xargs -I{} docker pull {}
-          docker build --tag "gradle:${directory}" .
+          docker build --tag "gradle:${{ matrix.directory }}" .
       - name: test
         env:
-          directory: ${{ matrix.versions.directory }}
-          ltsJavaVersion: ${{ matrix.versions.ltsJavaVersion }}
-          currentJavaVersion: ${{ matrix.versions.currentJavaVersion }}
-          variant: ${{ matrix.versions.variant }}
-          expectedGradleVersion: "8.13"
+          expectedGradleVersion: '8.13'
         run: |
-          toolchainJavaVersion="${currentJavaVersion:-${ltsJavaVersion}}"
-          if [[ "${variant:-''}" = "graal" ]]; then
-              cd test-graal
-              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" app/build.gradle
+          if [[ "${{ matrix.directory }}" = *-and-current* ]]; then
+            javaVersion=$(grep 'JAVA_CURRENT_HOME=' ${{ matrix.directory }}/Dockerfile | grep --extended-regex --only-matching '[0-9]+')
           else
-              cd test
-              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" lib/build.gradle.kts
+            javaVersion=$(echo "${{ matrix.directory }}" | grep --extended-regex --only-matching 'jdk[0-9]+' | grep --extended-regex --only-matching '[0-9]+')
           fi
-          ./run.sh "gradle:${directory}" "${expectedGradleVersion}"
+          if [[ "${{ matrix.directory }}" = *graal* ]]; then
+            cd test-graal
+            sed --in-place "s/JavaLanguageVersion.of(00)/JavaLanguageVersion.of(${javaVersion})/" app/build.gradle
+          else
+            cd test
+            sed --in-place "s/JavaLanguageVersion.of(00)/JavaLanguageVersion.of(${javaVersion})/" lib/build.gradle.kts
+          fi
+          ./run.sh "gradle:${{ matrix.directory }}" "${expectedGradleVersion}"
