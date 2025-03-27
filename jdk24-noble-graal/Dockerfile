@@ -56,13 +56,13 @@ RUN set -o errexit -o nounset \
     && which svn
 
 ENV JAVA_HOME=/opt/java/graalvm
-ENV JAVA_VERSION=23.0.2
+ENV JAVA_VERSION=24.0.0
 RUN set -o errexit -o nounset \
     && mkdir /opt/java \
     \
     && echo "Downloading GraalVM" \
-    && GRAALVM_AMD64_DOWNLOAD_SHA256=0cf63e88153b759136947c14f0042c515ae1ff9abf346f143dc47af065b1d6dd \
-    && GRAALVM_AARCH64_DOWNLOAD_SHA256=70d0ee8cb1922fbfe5a5db6a93360f63bbf0bdf72a6ca1f9b00906e600628c19 \
+    && GRAALVM_AMD64_DOWNLOAD_SHA256=6476257f3e8e652860c9dfcfea213961ec88a74d7025299d3e95b9441ee5213a \
+    && GRAALVM_AARCH64_DOWNLOAD_SHA256=d19c49df72b0d5017bed0467a7053baff3ee83cdff93a4341b3910fab45c68a4 \
     && ARCHITECTURE=$(dpkg --print-architecture) \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_ARCHITECTURE=linux-x64; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_ARCHITECTURE=linux-aarch64; fi \
