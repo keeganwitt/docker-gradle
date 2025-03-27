@@ -56,6 +56,13 @@ jobs:
           - jdk-lts-and-current-alpine
           - jdk-lts-and-current-corretto
           - jdk-lts-and-current-graal
+        exclude:
+          # Gradle doesn't yet support Java 24
+          - directory: jdk24-noble
+          - directory: jdk24-noble-graal
+          - directory: jdk24-corretto
+          - directory: jdk24-alpine
+          - directory: jdk24-ubi9
     steps:
       - name: checkout
         uses: actions/checkout@v4
