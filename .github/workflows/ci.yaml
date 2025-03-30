@@ -48,7 +48,7 @@ jobs:
           docker build --tag "gradle:${{ matrix.directory }}" .
       - name: test
         env:
-          expectedGradleVersion: '8.13'
+          expectedGradleVersion: '6.9.4'
         run: |
           if [[ "${{ matrix.directory }}" = *-and-current* ]]; then
             javaVersion=$(grep 'JAVA_CURRENT_HOME=' ${{ matrix.directory }}/Dockerfile | grep --extended-regex --only-matching '[0-9]+')

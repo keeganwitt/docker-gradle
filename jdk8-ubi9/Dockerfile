@@ -40,7 +40,7 @@ RUN set -o errexit -o nounset \
     && which git-lfs \
     && which svn
 
-ENV GRADLE_VERSION=8.13
+ENV GRADLE_VERSION=6.9.4
 ARG GRADLE_DOWNLOAD_SHA256=20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
