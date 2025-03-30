@@ -11,7 +11,7 @@ _sed() {
   fi
 }
 
-gradleVersion=6.9.4
+gradleVersion=7.6.4
 sha=$(curl --fail --show-error --silent --location "https://downloads.gradle.org/distributions/gradle-${gradleVersion}-bin.zip.sha256")
 
 _sed "s/ENV GRADLE_VERSION=.+$/ENV GRADLE_VERSION=${gradleVersion}/" ./*/Dockerfile

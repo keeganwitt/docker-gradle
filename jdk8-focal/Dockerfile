@@ -40,7 +40,7 @@ RUN set -o errexit -o nounset \
     && which hg \
     && which svn
 
-ENV GRADLE_VERSION 6.9.4
+ENV GRADLE_VERSION 7.6.4
 ARG GRADLE_DOWNLOAD_SHA256=bed1da33cca0f557ab13691c77f38bb67388119e4794d113e051039b80af9bb1
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
