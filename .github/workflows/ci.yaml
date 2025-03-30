@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - master
-      - 6
-      - 7
+      - '6'
+      - '7'
   pull_request:
     branches:
       - master
-      - 6
-      - 7
+      - '6'
+      - '7'
 
 defaults:
   run:
@@ -21,47 +21,45 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        versions:
-          - directory: jdk8-focal
-            ltsJavaVersion: 8
-          - directory: jdk8-jammy
-            ltsJavaVersion: 8
-          - directory: jdk8-corretto
-            ltsJavaVersion: 8
-          - directory: jdk11-jammy
-            ltsJavaVersion: 11
-          - directory: jdk11-focal
-            ltsJavaVersion: 11
-          - directory: jdk11-jammy
-            ltsJavaVersion: 11
-          - directory: jdk11-alpine
-            ltsJavaVersion: 11
-          - directory: jdk11-corretto
-            ltsJavaVersion: 11
+        directory:
+          - jdk8-focal
+          - jdk8-jammy
+          - jdk8-corretto
+          - jdk8-ubi9
+          - jdk11-focal
+          - jdk11-jammy
+          - jdk11-alpine
+          - jdk11-corretto
+          - jdk11-ubi9
+        exclude:
+          # Gradle doesn't yet support Java 24
+          - directory: jdk24-noble
+          - directory: jdk24-noble-graal
+          - directory: jdk24-corretto
+          - directory: jdk24-alpine
+          - directory: jdk24-ubi9
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: build
-        env:
-          directory: ${{ matrix.versions.directory }}
         run: |
-          cd "${directory}"
+          cd "${{ matrix.directory }}"
           grep "FROM " Dockerfile | cut -d' ' -f2 | xargs -I{} docker pull {}
-          docker build --tag "gradle:${directory}" .
+          docker build --tag "gradle:${{ matrix.directory }}" .
       - name: test
         env:
-          directory: ${{ matrix.versions.directory }}
-          ltsJavaVersion: ${{ matrix.versions.ltsJavaVersion }}
-          currentJavaVersion: ${{ matrix.versions.currentJavaVersion }}
-          variant: ${{ matrix.versions.variant }}
-          expectedGradleVersion: "6.9.4"
+          expectedGradleVersion: '8.13'
         run: |
-          toolchainJavaVersion="${currentJavaVersion:-${ltsJavaVersion}}"
-          if [[ "${variant:-''}" = "graal" ]]; then
-              cd test-graal
-              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" app/build.gradle
+          if [[ "${{ matrix.directory }}" = *-and-current* ]]; then
+            javaVersion=$(grep 'JAVA_CURRENT_HOME=' ${{ matrix.directory }}/Dockerfile | grep --extended-regex --only-matching '[0-9]+')
           else
-              cd test
-              sed --regexp-extended --in-place "s/JavaLanguageVersion\.of\([0-9]+\)/JavaLanguageVersion.of(${toolchainJavaVersion})/" lib/build.gradle.kts
+            javaVersion=$(echo "${{ matrix.directory }}" | grep --extended-regex --only-matching 'jdk[0-9]+' | grep --extended-regex --only-matching '[0-9]+')
           fi
-          ./run.sh "gradle:${directory}" "${expectedGradleVersion}"
+          if [[ "${{ matrix.directory }}" = *graal* ]]; then
+            cd test-graal
+            sed --in-place "s/JavaLanguageVersion.of(00)/JavaLanguageVersion.of(${javaVersion})/" app/build.gradle
+          else
+            cd test
+            sed --in-place "s/JavaLanguageVersion.of(00)/JavaLanguageVersion.of(${javaVersion})/" lib/build.gradle.kts
+          fi
+          ./run.sh "gradle:${{ matrix.directory }}" "${expectedGradleVersion}"
