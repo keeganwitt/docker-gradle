@@ -63,10 +63,6 @@ jobs:
           - directory: jdk24-corretto
           - directory: jdk24-alpine
           - directory: jdk24-ubi9
-          - directory: jdk-lts-and-current
-          - directory: jdk-lts-and-current-alpine
-          - directory: jdk-lts-and-current-corretto
-          - directory: jdk-lts-and-current-graal
     steps:
       - name: checkout
         uses: actions/checkout@v4
