@@ -87,9 +87,9 @@ RUN set -o errexit -o nounset \
     && mv graalvm-* /opt/java/graalvm21 \
     \
     && echo "Downloading current GraalVM" \
-    && JAVA_24_VERSION=24.0.0 \
-    && GRAALVM_24_AMD64_DOWNLOAD_SHA256=6476257f3e8e652860c9dfcfea213961ec88a74d7025299d3e95b9441ee5213a \
-    && GRAALVM_24_AARCH64_DOWNLOAD_SHA256=d19c49df72b0d5017bed0467a7053baff3ee83cdff93a4341b3910fab45c68a4 \
+    && JAVA_24_VERSION=24.0.1 \
+    && GRAALVM_24_AMD64_DOWNLOAD_SHA256=d2c544de672e400476a09c8f1da79ecc6b774a9441e234948542c3b3e6a84bde \
+    && GRAALVM_24_AARCH64_DOWNLOAD_SHA256=a3d1be8fadfb0d3df632252301f79a9b02b47e523da66539d370c62e683d762e \
     && ARCHITECTURE=$(dpkg --print-architecture) \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_ARCHITECTURE=linux-x64; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_ARCHITECTURE=linux-aarch64; fi \
