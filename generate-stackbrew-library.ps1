@@ -4,8 +4,6 @@ $ErrorActionPreference = "Stop"
 
 # NOTE: run something like `git fetch origin` before this script to ensure all remote branch references are up-to-date!
 
-# usage: ./generate-stackbrew-library.ps1 > ../official-images/library/gradle
-
 # front-load the "command-not-found" notices
 bashbrew --version > $null
 
@@ -42,12 +40,10 @@ GitCommit: $commit
 # Gradle $major.x
 "@
 
-    # Get all directories with Dockerfiles
     $allDirectories = git ls-tree -r --name-only "$commit" |
                      Where-Object { $_ -match '/Dockerfile$' } |
                      ForEach-Object { $_ -replace '/Dockerfile$', '' }
 
-    # Extract JDK part and convert to number for sorting
     $directoriesWithSortKeys = @()
     foreach ($dir in $allDirectories) {
         $jdkPart = ($dir -split '-')[0] -replace 'jdk', ''
@@ -125,7 +121,6 @@ GitCommit: $commit
             ''
         )
 
-        # Equivalent to "${versions[@]/%/-$jdk${variant:+-$variant}}"
         $tags += $versions | ForEach-Object {
             if ($variant) {
                 "$_-$jdk-$variant"
@@ -180,7 +175,6 @@ GitCommit: $commit
                 default {
                     $lts = $fromTag.Split('-')[0]
                     $copyFromLine = $dockerfile | Select-String -Pattern '^COPY\s+--from=' | Select-Object -First 1
-                    # Extract the image name correctly
                     if ($copyFromLine -match '--from=([^\s]+)') {
                         $currentFrom = $matches[1]
                         $currentFromTag = $currentFrom.Split(':')[-1]
