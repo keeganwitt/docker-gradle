@@ -35,9 +35,11 @@ WORKDIR /home/gradle
 RUN set -o errexit -o nounset \
     && apt-get update \
     && apt-get install --yes --no-install-recommends \
+        # Dockerfile dependencies
         unzip \
         wget \
         \
+        # VCSes
         bzr \
         git \
         git-lfs \
@@ -45,6 +47,19 @@ RUN set -o errexit -o nounset \
         openssh-client \
         subversion \
     && rm --recursive --force /var/lib/apt/lists/* \
+    \
+    && echo "Testing common utilities" \
+    && which awk \
+    && which curl \
+    && which cut \
+    && which grep \
+    && which gunzip \
+    && which sha256sum \
+    && which sed \
+    && which tar \
+    && which tr \
+    && which unzip \
+    && which wget \
     \
     && echo "Testing VCSes" \
     && which bzr \

@@ -35,6 +35,19 @@ RUN set -o errexit -o nounset \
         subversion \
     && microdnf clean all \
     \
+    && echo "Testing common utilities" \
+    && which awk \
+    && which curl \
+    && which cut \
+    && which grep \
+    && which gunzip \
+    && which sha256sum \
+    && which sed \
+    && which tar \
+    && which tr \
+    && which unzip \
+    && which wget \
+    \
     && echo "Testing VCSes" \
     && which git \
     && which git-lfs \
