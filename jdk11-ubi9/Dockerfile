@@ -26,7 +26,6 @@ RUN set -o errexit -o nounset \
         \
         # Dockerfile dependencies
         unzip \
-        wget \
         which \
         \
         # VCS dependencies

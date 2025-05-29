@@ -6,8 +6,7 @@ ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && dnf install -y \
-        # Common utilities
-        shadow-utils \
+        # common utilities
         tar \
         \
         # Dockerfile dependencies

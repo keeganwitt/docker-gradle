@@ -23,7 +23,6 @@ RUN set -o errexit -o nounset \
     && apt-get install --yes --no-install-recommends \
        # Dockerfile dependencies
         unzip \
-        wget \
         \
         # VCSes
         brz \
