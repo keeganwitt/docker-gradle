@@ -41,7 +41,7 @@ RUN set -o errexit -o nounset \
         zlib1g-dev \
         \
         # VCSes
-        bzr \
+        brz \
         git \
         git-lfs \
         mercurial \
@@ -63,7 +63,7 @@ RUN set -o errexit -o nounset \
     && which wget \
     \
     && echo "Testing VCSes" \
-    && which bzr \
+    && which brz \
     && which git \
     && which git-lfs \
     && which hg \

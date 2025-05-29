@@ -25,6 +25,8 @@ RUN set -o errexit -o nounset \
       curl \
       \
       # VCSes
+      breezy \
+      py3-tzlocal \
       git \
       git-lfs \
       mercurial \
