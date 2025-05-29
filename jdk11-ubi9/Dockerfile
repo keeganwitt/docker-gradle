@@ -21,6 +21,9 @@ WORKDIR /home/gradle
 
 RUN set -o errexit -o nounset \
     && microdnf install -y \
+        # common utilities
+        make \
+        \
         # Gradle dependencies
         findutils \
         \

@@ -23,6 +23,7 @@ RUN set -o errexit -o nounset \
     && apk add --no-cache \
       # common utilities
       curl \
+      make \
       \
       # VCSes
       breezy \

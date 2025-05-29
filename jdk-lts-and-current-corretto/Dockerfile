@@ -11,6 +11,7 @@ ENV GRADLE_HOME=/opt/gradle
 RUN set -o errexit -o nounset \
     && dnf install -y \
         # common utilities
+        make \
         tar \
         \
         # Dockerfile dependencies

@@ -30,6 +30,9 @@ RUN set -o errexit -o nounset \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get install --yes --no-install-recommends \
+        # common utilities
+        make \
+        \
         # Gradle & Dockerfile dependencies
         binutils \
         ca-certificates \
