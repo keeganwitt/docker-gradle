@@ -40,6 +40,12 @@ jobs:
           - jdk17-focal-graal
           - jdk17-jammy-graal
           - jdk17-noble-graal
+        exclude:
+          # Ubuntu Focal repos are currently experiencing an outage
+          - directory: jdk8-focal
+          - directory: jdk11-focal
+          - directory: jdk17-focal
+          - directory: jdk17-focal-graal
     steps:
       - name: checkout
         uses: actions/checkout@v4

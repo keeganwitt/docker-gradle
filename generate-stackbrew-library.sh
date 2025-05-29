@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail
+set -o errexit -o nounset -o pipefail
 
 # NOTE: run something like `git fetch origin` before this script to ensure all remote branch references are up-to-date!
 

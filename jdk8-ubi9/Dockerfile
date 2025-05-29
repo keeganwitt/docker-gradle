@@ -21,12 +21,14 @@ WORKDIR /home/gradle
 
 RUN set -o errexit -o nounset \
     && microdnf install -y \
+        # common utilities
+        make \
+        \
         # Gradle dependencies
         findutils \
         \
         # Dockerfile dependencies
         unzip \
-        wget \
         which \
         \
         # VCS dependencies
@@ -34,6 +36,19 @@ RUN set -o errexit -o nounset \
         git-lfs \
         subversion \
     && microdnf clean all \
+    \
+    && echo "Testing common utilities" \
+    && which awk \
+    && which curl \
+    && which cut \
+    && which grep \
+    && which gunzip \
+    && which sha256sum \
+    && which sed \
+    && which tar \
+    && which tr \
+    && which unzip \
+    && which wget \
     \
     && echo "Testing VCSes" \
     && which git \
