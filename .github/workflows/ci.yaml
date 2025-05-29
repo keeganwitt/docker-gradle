@@ -32,12 +32,11 @@ jobs:
           - jdk11-corretto
           - jdk11-ubi9
         exclude:
-          # Gradle doesn't yet support Java 24
-          - directory: jdk24-noble
-          - directory: jdk24-noble-graal
-          - directory: jdk24-corretto
-          - directory: jdk24-alpine
-          - directory: jdk24-ubi9
+          # Ubuntu Focal repos are currently experiencing an outage
+          - directory: jdk8-focal
+          - directory: jdk11-focal
+          - directory: jdk17-focal
+          - directory: jdk17-focal-graal
     steps:
       - name: checkout
         uses: actions/checkout@v4

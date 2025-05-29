@@ -5,6 +5,7 @@
 * [jdk8, jdk8-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-jammy/Dockerfile)
 * [jdk8-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-focal/Dockerfile)
 * [jdk8-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-corretto/Dockerfile)
+* [jdk8-ubi9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-ubi9/Dockerfile)
 * [jdk11, jdk11-noble](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-noble/Dockerfile)
 * [jdk11-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-jammy/Dockerfile)
 * [jdk11-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-focal/Dockerfile)
