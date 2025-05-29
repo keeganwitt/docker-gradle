@@ -6,19 +6,38 @@ ENV GRADLE_HOME=/opt/gradle
 
 RUN set -o errexit -o nounset \
     && dnf install -y \
-        shadow-utils \
+        # common utilities
+        make \
+        tar \
+        \
+        # Dockerfile dependencies
         unzip \
         wget \
         which \
         \
+        # Gradle dependencies
         findutils \
         \
+        # VCS dependencies
         git \
         git-lfs \
         mercurial \
         subversion \
     && dnf clean all \
     && rm -rf /var/cache/yum \
+    \
+    && echo "Testing common utilities" \
+    && which awk \
+    && which curl \
+    && which cut \
+    && which grep \
+    && which gunzip \
+    && which sha256sum \
+    && which sed \
+    && which tar \
+    && which tr \
+    && which unzip \
+    && which wget \
     \
     && echo "Testing VCSes" \
     && which git \

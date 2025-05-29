@@ -10,7 +10,7 @@ RUN set -o errexit -o nounset \
     && useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
     && mkdir /home/gradle/.gradle \
     && chown --recursive gradle:gradle /home/gradle \
-    && chmod -R o+rwx /home/gradle \
+    && chmod --recursive o+rwx /home/gradle \
     \
     && echo "Symlinking root Gradle cache to gradle Gradle cache" \
     && ln --symbolic /home/gradle/.gradle /root/.gradle
@@ -23,6 +23,10 @@ RUN set -o errexit -o nounset \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get install --yes --no-install-recommends \
+        # common utilities
+        make \
+        \
+        # Gradle & Dockerfile dependencies
         binutils \
         ca-certificates \
         curl \
@@ -33,12 +37,14 @@ RUN set -o errexit -o nounset \
         unzip \
         wget \
         \
+        # build dependencies
         gcc \
         libc-dev \
         libz-dev \
         zlib1g-dev \
         \
-        bzr \
+        # VCSes
+        brz \
         git \
         git-lfs \
         mercurial \
@@ -46,8 +52,21 @@ RUN set -o errexit -o nounset \
         subversion \
     && rm --recursive --force /var/lib/apt/lists/* \
     \
+    && echo "Testing common utilities" \
+    && which awk \
+    && which curl \
+    && which cut \
+    && which grep \
+    && which gunzip \
+    && which sha256sum \
+    && which sed \
+    && which tar \
+    && which tr \
+    && which unzip \
+    && which wget \
+    \
     && echo "Testing VCSes" \
-    && which bzr \
+    && which brz \
     && which git \
     && which git-lfs \
     && which hg \

@@ -20,12 +20,31 @@ VOLUME /home/gradle/.gradle
 WORKDIR /home/gradle
 
 RUN set -o errexit -o nounset \
-    && echo "Installing VCSes" \
     && apk add --no-cache \
+      # common utilities
+      curl \
+      make \
+      \
+      # VCSes
+      breezy \
+      py3-tzlocal \
       git \
       git-lfs \
       mercurial \
       subversion \
+    \
+    && echo "Testing common utilities" \
+    && which awk \
+    && which curl \
+    && which cut \
+    && which grep \
+    && which gunzip \
+    && which sha256sum \
+    && which sed \
+    && which tar \
+    && which tr \
+    && which unzip \
+    && which wget \
     \
     && echo "Testing VCSes" \
     && which git \

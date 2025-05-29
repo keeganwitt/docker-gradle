@@ -56,6 +56,12 @@ jobs:
           - jdk-lts-and-current-alpine
           - jdk-lts-and-current-corretto
           - jdk-lts-and-current-graal
+        exclude:
+          # Ubuntu Focal repos are currently experiencing an outage
+          - directory: jdk8-focal
+          - directory: jdk11-focal
+          - directory: jdk17-focal
+          - directory: jdk17-focal-graal
     steps:
       - name: checkout
         uses: actions/checkout@v4
