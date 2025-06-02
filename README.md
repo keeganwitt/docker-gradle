@@ -3,24 +3,38 @@
 ## Supported tags and respective Dockerfile links
 
 * [jdk8, jdk8-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-jammy/Dockerfile)
-* [jdk8-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-focal/Dockerfile)
 * [jdk8-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-corretto/Dockerfile)
 * [jdk8-ubi9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-ubi9/Dockerfile)
 * [jdk11, jdk11-noble](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-noble/Dockerfile)
 * [jdk11-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-jammy/Dockerfile)
-* [jdk11-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-focal/Dockerfile)
 * [jdk11-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-alpine/Dockerfile)
 * [jdk11, jdk11-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-corretto/Dockerfile)
 * [jdk11-ubi9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-ubi9/Dockerfile)
 * [jdk17, jdk17-noble](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-noble/Dockerfile)
 * [jdk17-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-jammy/Dockerfile)
-* [jdk17-focal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-focal/Dockerfile)
 * [jdk17-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-alpine/Dockerfile)
 * [jdk17-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-corretto/Dockerfile)
 * [jdk17-ubi9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-ubi9/Dockerfile)
 * [jdk17-noble-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-noble-graal/Dockerfile)
-* [jdk17-focal-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-focal-graal/Dockerfile)
 
+### lts-and-current images
+
+Gradle's support for new Java releases historically has lagged for multiple months.
+This means most users wanting to use the latest Java release will need to do so using toolchains.
+Toolchains are 
+documented [here](https://docs.gradle.org/current/userguide/toolchains.html) and [here](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html#configuration-toolchains) for GraalVM.
+The lts-and-current images provide both the latest LTS JDK and the latest (LTS or non-LTS) JDK.
+This allows Gradle to be launched with a supported JDK (the latest LTS release)
+and configure the compilation using toolchains to use the latest current JDK.
+This is done by putting the content below in `/home/gradle/.gradle/gradle.properties`.
+```properties
+org.gradle.java.installations.auto-detect=false
+org.gradle.java.installations.auto-download=false
+org.gradle.java.installations.fromEnv=JAVA_LTS_HOME,JAVA_CURRENT_HOME
+```
+The `JAVA_LTS_HOME` environment variable points to the path
+where the latest LTS JDK is installed and `JAVA_CURRENT_HOME` points to the latest current JDK.
+These may point to the same path if the latest JDK is an LTS release.
 ## What is Gradle?
 
 [Gradle](https://gradle.org/) is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing websites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.

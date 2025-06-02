@@ -22,30 +22,20 @@ jobs:
     strategy:
       matrix:
         directory:
-          - jdk8-focal
           - jdk8-jammy
           - jdk8-corretto
           - jdk8-ubi9
-          - jdk11-focal
           - jdk11-jammy
           - jdk11-alpine
           - jdk11-corretto
           - jdk11-ubi9
-          - jdk17-focal
           - jdk17-jammy
           - jdk17-noble
           - jdk17-alpine
           - jdk17-corretto
           - jdk17-ubi9
-          - jdk17-focal-graal
           - jdk17-jammy-graal
           - jdk17-noble-graal
-        exclude:
-          # Ubuntu Focal repos are currently experiencing an outage
-          - directory: jdk8-focal
-          - directory: jdk11-focal
-          - directory: jdk17-focal
-          - directory: jdk17-focal-graal
     steps:
       - name: checkout
         uses: actions/checkout@v4
