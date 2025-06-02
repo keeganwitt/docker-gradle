@@ -29,7 +29,7 @@ Write-Host "Graal 24 AARCH64 hash is $graal24aarch64Hash"
 dir -Recurse -Filter Dockerfile | ForEach-Object {
     (Get-Content -Path $_.FullName) -replace "ENV GRADLE_VERSION=.+$", "ENV GRADLE_VERSION=${gradleVersion}" | Set-Content $_.FullName
     (Get-Content -Path $_.FullName) -replace "GRADLE_DOWNLOAD_SHA256=.+$", "GRADLE_DOWNLOAD_SHA256=${sha}" | Set-Content $_.FullName
-    if ($((Get-Item $_.FullName).Directory.Name) -eq "jdk17-noble-graal" -Or $((Get-Item $_.FullName).Directory.Name) -eq "jdk17-jammy-graal" -Or $((Get-Item $_.FullName).Directory.Name) -eq "jdk17-focal-graal")
+    if ($((Get-Item $_.FullName).Directory.Name) -eq "jdk17-noble-graal" -Or $((Get-Item $_.FullName).Directory.Name) -eq "jdk17-jammy-graal")
     {
         (Get-Content -Path $_.FullName) -replace "JAVA_VERSION=[^ ]+", "JAVA_VERSION=${graal17Version}" | Set-Content $_.FullName
         (Get-Content -Path $_.FullName) -replace "GRAALVM_AMD64_DOWNLOAD_SHA256=[^ ]+", "GRAALVM_AMD64_DOWNLOAD_SHA256=${graal17amd64Hash}" | Set-Content $_.FullName
