@@ -90,9 +90,8 @@ for branch in "${branches[@]}"; do
 					# ubuntu versions in descending order
 					(
 						# if unspecified, we assume "latest" (currently "noble")
-						if contains("jammy") then -2
-						elif contains("focal") then -1
-						else -3 end
+						if contains("jammy") then -1
+						else -2 end
 					),
 					. # if all else fails, sort lexicographically
 				]
@@ -141,7 +140,7 @@ for branch in "${branches[@]}"; do
 
 		fromTag="${from##*:}"
 		suite="${fromTag%-jdk}"
-		suite="${suite##*-}" # "noble", "jammy", "focal", "al2023", etc
+		suite="${suite##*-}" # "noble", "jammy", "al2023", etc
 
 		jdk="${dir%%-*}" # "jdk8", etc
 		if [[ "$dir" == jdk-lts-and-current* ]]; then
