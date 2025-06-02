@@ -58,9 +58,8 @@ GitCommit: $commit
         elseif ($dir -match 'ubi') { $variantSort = 3 }
         elseif ($dir -match 'graal') { $variantSort = 4 }
 
-        $suiteSort = -3 # Default (noble or unspecified)
-        if ($dir -match 'jammy') { $suiteSort = -2 }
-        elseif ($dir -match 'focal') { $suiteSort = -1 }
+        $suiteSort = -2 # Default (noble or unspecified)
+        if ($dir -match 'jammy') { $suiteSort = -1 }
 
         $directoriesWithSortKeys += [PSCustomObject]@{
             Directory = $dir
