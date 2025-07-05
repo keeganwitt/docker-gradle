@@ -1,4 +1,4 @@
-$gradleVersion = '7.6.5'
+$gradleVersion = '7.6.6'
 $sha = $(Invoke-RestMethod -Uri https://downloads.gradle.org/distributions/gradle-${gradleVersion}-bin.zip.sha256)
 
 $wc = [System.Net.WebClient]::new()
