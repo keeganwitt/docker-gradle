@@ -9,6 +9,7 @@ bashbrew --version > $null
 
 $branches = @(
  'master'
+ '8'
  '7'
  '6'
 )
@@ -24,7 +25,7 @@ $usedTags = @{}
 $archesLookupCache = @{}
 foreach ($branch in $branches) {
     switch ($branch) {
-        'master' { $major = '8' }
+        'master' { $major = '9' }
         default { $major = $branch }
     }
 
@@ -73,10 +74,6 @@ GitCommit: $commit
 
     $firstVersion = $null
     foreach ($dir in $directories) {
-        if (-not (Test-Path $dir)) {
-            continue
-        }
-
         $dockerfile = git show "${commit}:$dir/Dockerfile"
 
         $from = $dockerfile | Select-String -Pattern '^FROM ' | ForEach-Object { $_.Line -split ' ' | Select-Object -Last 1 }

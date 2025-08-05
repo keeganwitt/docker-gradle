@@ -11,6 +11,7 @@ bashbrew --version > /dev/null
 
 branches=(
 	'master'
+	'8'
 	'7'
 	'6'
 )
@@ -25,7 +26,7 @@ EOH
 declare -A usedTags=() archesLookupCache=()
 for branch in "${branches[@]}"; do
 	case "$branch" in
-		master) major='8' ;;
+		master) major='9' ;;
 		*) major="$branch" ;;
 	esac
 
