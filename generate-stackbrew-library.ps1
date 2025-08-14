@@ -14,11 +14,13 @@ $branches = @(
  '6'
 )
 
-$gitRemote = (git remote -v | Select-String 'keeganwitt/docker-gradle' | ForEach-Object { $_.Line.Split()[0] })[0]
+$gitRemote = (git remote -v | Select-String 'gradle/docker-gradle' | ForEach-Object { $_.Line.Split()[0] })[0]
 
 @"
-Maintainers: Keegan Witt <keeganwitt@gmail.com> (@keeganwitt)
-GitRepo: https://github.com/keeganwitt/docker-gradle.git
+Maintainers: Louis Jacomet <louis@gradle.com> (@ljacomet),
+             Christoph Obexer <cobexer@gradle.com> (@cobexer),
+             Keegan Witt <keeganwitt@gmail.com> (@keeganwitt)
+GitRepo: https://github.com/gradle/docker-gradle.git
 "@
 
 $usedTags = @{}
