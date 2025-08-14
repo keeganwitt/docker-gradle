@@ -2,51 +2,52 @@
 
 ## Supported tags and respective Dockerfile links
 
-* [jdk8, jdk8-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-jammy/Dockerfile)
-* [jdk8-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-corretto/Dockerfile)
-* [jdk8-ubi9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk8-ubi9/Dockerfile)
-* [jdk11, jdk11-noble](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-noble/Dockerfile)
-* [jdk11-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-jammy/Dockerfile)
-* [jdk11-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-alpine/Dockerfile)
-* [jdk11, jdk11-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-corretto/Dockerfile)
-* [jdk11-ubi9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-ubi9/Dockerfile)
-* [jdk17, jdk17-noble](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-noble/Dockerfile)
-* [jdk17-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-jammy/Dockerfile)
-* [jdk17-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-alpine/Dockerfile)
-* [jdk17-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-corretto/Dockerfile)
-* [jdk17-ubi9](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-ubi9/Dockerfile)
-* [jdk17-noble-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk17-noble-graal/Dockerfile)
-* [jdk21, jdk21-noble, latest](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-noble/Dockerfile)
-* [jdk21-jammy](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-jammy/Dockerfile)
-* [jdk21-alpine, alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-alpine/Dockerfile)
-* [jdk21-corretto, corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-corretto/Dockerfile)
-* [jdk21-ubi9, ubi](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-ubi9/Dockerfile)
-* [jdk21-noble-graal, jdk21-graal, graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-noble-graal/Dockerfile)
-* [jdk21-jammy-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk21-jammy-graal/Dockerfile)
-* [jdk24, jdk24-noble](https://github.com/keeganwitt/docker-gradle/blob/master/jdk23/Dockerfile)
-* [jdk24-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk23-alpine/Dockerfile)
-* [jdk24-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk23-corretto/Dockerfile)
-* [jdk24-noble-graal, jdk24-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk23-noble-graal/Dockerfile)
-* [jdk-lts-and-current](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current/Dockerfile)
-* [jdk-lts-and-current-alpine](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current-alpine/Dockerfile)
-* [jdk-lts-and-current-corretto](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current-corretto/Dockerfile)
-* [jdk-lts-and-current-graal](https://github.com/keeganwitt/docker-gradle/blob/master/jdk-lts-and-current-graal/Dockerfile)
+* [jdk8, jdk8-jammy](https://github.com/gradle/docker-gradle/blob/master/jdk8-jammy/Dockerfile)
+* [jdk8-corretto](https://github.com/gradle/docker-gradle/blob/master/jdk8-corretto/Dockerfile)
+* [jdk8-ubi9](https://github.com/gradle/docker-gradle/blob/master/jdk8-ubi9/Dockerfile)
+* [jdk11, jdk11-noble](https://github.com/gradle/docker-gradle/blob/master/jdk11-noble/Dockerfile)
+* [jdk11-jammy](https://github.com/gradle/docker-gradle/blob/master/jdk11-jammy/Dockerfile)
+* [jdk11-alpine](https://github.com/gradle/docker-gradle/blob/master/jdk11-alpine/Dockerfile)
+* [jdk11, jdk11-corretto](https://github.com/gradle/docker-gradle/blob/master/jdk11-corretto/Dockerfile)
+* [jdk11-ubi9](https://github.com/gradle/docker-gradle/blob/master/jdk11-ubi9/Dockerfile)
+* [jdk17, jdk17-noble](https://github.com/gradle/docker-gradle/blob/master/jdk17-noble/Dockerfile)
+* [jdk17-jammy](https://github.com/gradle/docker-gradle/blob/master/jdk17-jammy/Dockerfile)
+* [jdk17-alpine](https://github.com/gradle/docker-gradle/blob/master/jdk17-alpine/Dockerfile)
+* [jdk17-corretto](https://github.com/gradle/docker-gradle/blob/master/jdk17-corretto/Dockerfile)
+* [jdk17-ubi9](https://github.com/gradle/docker-gradle/blob/master/jdk17-ubi9/Dockerfile)
+* [jdk17-noble-graal](https://github.com/gradle/docker-gradle/blob/master/jdk17-noble-graal/Dockerfile)
+* [jdk21, jdk21-noble, latest](https://github.com/gradle/docker-gradle/blob/master/jdk21-noble/Dockerfile)
+* [jdk21-jammy](https://github.com/gradle/docker-gradle/blob/master/jdk21-jammy/Dockerfile)
+* [jdk21-alpine, alpine](https://github.com/gradle/docker-gradle/blob/master/jdk21-alpine/Dockerfile)
+* [jdk21-corretto, corretto](https://github.com/gradle/docker-gradle/blob/master/jdk21-corretto/Dockerfile)
+* [jdk21-ubi9, ubi](https://github.com/gradle/docker-gradle/blob/master/jdk21-ubi9/Dockerfile)
+* [jdk21-noble-graal, jdk21-graal, graal](https://github.com/gradle/docker-gradle/blob/master/jdk21-noble-graal/Dockerfile)
+* [jdk21-jammy-graal](https://github.com/gradle/docker-gradle/blob/master/jdk21-jammy-graal/Dockerfile)
+* [jdk24, jdk24-noble](https://github.com/gradle/docker-gradle/blob/master/jdk23/Dockerfile)
+* [jdk24-alpine](https://github.com/gradle/docker-gradle/blob/master/jdk23-alpine/Dockerfile)
+* [jdk24-corretto](https://github.com/gradle/docker-gradle/blob/master/jdk23-corretto/Dockerfile)
+* [jdk24-noble-graal, jdk24-graal](https://github.com/gradle/docker-gradle/blob/master/jdk23-noble-graal/Dockerfile)
+* [jdk-lts-and-current](https://github.com/gradle/docker-gradle/blob/master/jdk-lts-and-current/Dockerfile)
+* [jdk-lts-and-current-alpine](https://github.com/gradle/docker-gradle/blob/master/jdk-lts-and-current-alpine/Dockerfile)
+* [jdk-lts-and-current-corretto](https://github.com/gradle/docker-gradle/blob/master/jdk-lts-and-current-corretto/Dockerfile)
+* [jdk-lts-and-current-graal](https://github.com/gradle/docker-gradle/blob/master/jdk-lts-and-current-graal/Dockerfile)
 
 ### lts-and-current images
 
 Gradle's support for new Java releases historically has lagged for multiple months.
 This means most users wanting to use the latest Java release will need to do so using toolchains.
-Toolchains are 
-documented [here](https://docs.gradle.org/current/userguide/toolchains.html) and [here](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html#configuration-toolchains) for GraalVM.
+Toolchains are documented [here](https://docs.gradle.org/current/userguide/toolchains.html) and [here](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html#configuration-toolchains) for GraalVM.
 The lts-and-current images provide both the latest LTS JDK and the latest (LTS or non-LTS) JDK.
 This allows Gradle to be launched with a supported JDK (the latest LTS release)
 and configure the compilation using toolchains to use the latest current JDK.
 This is done by putting the content below in `/home/gradle/.gradle/gradle.properties`.
+
 ```properties
 org.gradle.java.installations.auto-detect=false
 org.gradle.java.installations.auto-download=false
 org.gradle.java.installations.fromEnv=JAVA_LTS_HOME,JAVA_CURRENT_HOME
 ```
+
 The `JAVA_LTS_HOME` environment variable points to the path
 where the latest LTS JDK is installed and `JAVA_CURRENT_HOME` points to the latest current JDK.
 These may point to the same path if the latest JDK is an LTS release.
@@ -87,7 +88,7 @@ Note that sharing between concurrently running containers doesn't work currently
 Also, currently it's [not possible](https://github.com/moby/moby/issues/3465) to override the volume declaration of the parent.
 So if you are using this image as a base image and want the Gradle cache to be written into the next layer, you will need to use a new user (or use the `--gradle-user-home`/`-g` argument) so that a new cache is created that isn't mounted to a volume.
 
-```
+```bash
 docker volume create --name gradle-cache
 docker run --rm -u gradle -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/project -w /home/gradle/project gradle:latest gradle <gradle-task>
 ```
@@ -99,4 +100,4 @@ docker run --rm -u gradle -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/g
 1. Update [official-images](https://github.com/docker-library/official-images) (and [docs](https://github.com/docker-library/docs) if appropriate).
 
 ---
-[![Build status badge](https://github.com/keeganwitt/docker-gradle/workflows/GitHub%20CI/badge.svg)](https://github.com/keeganwitt/docker-gradle/actions?query=workflow%3A%22GitHub+CI%22)
+[![Build status badge](https://github.com/gradle/docker-gradle/workflows/GitHub%20CI/badge.svg)](https://github.com/gradle/docker-gradle/actions?query=workflow%3A%22GitHub+CI%22)
