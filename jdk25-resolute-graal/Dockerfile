@@ -76,17 +76,19 @@ RUN set -o errexit -o nounset \
     && which svn
 
 ENV JAVA_HOME=/opt/java/graalvm
-ENV JAVA_VERSION=25.0.2
+ENV JAVA_VERSION=25.0.4
 RUN set -o errexit -o nounset \
     && mkdir /opt/java \
     \
     && echo "Downloading GraalVM" \
-    && GRAALVM_AMD64_DOWNLOAD_SHA256=e0be791c8fda4d03b6b0a0cb824fef3149736170057b3a515252b44419606af0 \
-    && GRAALVM_AARCH64_DOWNLOAD_SHA256=b4580d9f223d0a4b3a1757e58b18ff4c1db950e67e105fc5cb741457d2384a71 \
+    && GRAALVM_AMD64_DOWNLOAD_SHA256=3f4a89de8eaa96f2ed677f09957c7e872cd8467aad3537f8b5394c1b8c4b942e \
+    && GRAALVM_AARCH64_DOWNLOAD_SHA256=22286f7ecd21b9aedb3226b9bf797469e1bd3eefc491e12ef3dd49b452d230b7 \
     && ARCHITECTURE=$(dpkg --print-architecture) \
     && if [ "${ARCHITECTURE}" = "amd64" ]; then GRAALVM_ARCHITECTURE=linux-x64; fi \
     && if [ "${ARCHITECTURE}" = "arm64" ]; then GRAALVM_ARCHITECTURE=linux-aarch64; fi \
-    && GRAALVM_PKG=https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}_${GRAALVM_ARCHITECTURE}_bin.tar.gz \
+    && GRAALVM_RELEASE_TAG=graal-25.2.4 \
+    && GRAALVM_ARTIFACT_VERSION=25i2-25.0.4 \
+    && GRAALVM_PKG=https://github.com/graalvm/graalvm-ce-builds/releases/download/${GRAALVM_RELEASE_TAG}/graalvm-community-jdk-${GRAALVM_ARTIFACT_VERSION}_${GRAALVM_ARCHITECTURE}_bin.tar.gz \
     && wget --no-verbose --output-document=graalvm.tar.gz "${GRAALVM_PKG}" \
     \
     && echo "Checking GraalVM download hash" \
