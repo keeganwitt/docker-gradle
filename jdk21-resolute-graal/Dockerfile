@@ -109,8 +109,8 @@ RUN set -o errexit -o nounset \
     && javac --version \
     && native-image --version
 
-ENV GRADLE_VERSION=9.7.0
-ARG GRADLE_DOWNLOAD_SHA256=84fbba45c7f4c64abc77460e1c00f541e9f960e3c7ed2538f1ede19eacd873ae
+ENV GRADLE_VERSION=9.7.1
+ARG GRADLE_DOWNLOAD_SHA256=acd53f1edaf02f1a8ff99879f8a34b302661a057d9b063ae9e35b552f804d20a
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
